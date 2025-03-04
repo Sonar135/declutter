@@ -5,11 +5,64 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/table.css">
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/overlay.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
+
+  <div class="screen_overlay">
+    <div class="container action">
+        <div class="ac_cent">
+         <h1>Delete <span id="name">Shoe</span> ?</h1>
+
+         <div class="options">
+         <form id="delete_form"> 
+             <input type="text" id="id" hidden name="id">
+             <button id="sale_submit">Yes</button></form> 
+             <button id="no">No</button>
+         </div>
+        </div>
+     </div>
+
+     <div class="form_cont">
+
+        <h1>Update <span id="update_name">profile</span> ?</h1>
+        <form action="" id="edit_form">
+        <input type="text" placeholder="Name" id="data" name="name" class="field name">
+        <input type="number" placeholder="phone no" id="data" name="phone" class="field quantity">
+        <input type="text" placeholder="hall" id="data" name="hall" class="field price">
+        <input type="hidden"  name="id" class="id">
+
+        <div class="buttons">
+            <button disabled class="submit">Submit</button>
+            <div class="close">Close</div>
+        </div>
+
+    </form>
+     </div>
+
+
+
+     <div class="don-form">
+
+      <h1>Update <span id="update_name">Item</span> ?</h1>
+      <form action="" id="edit-don-form">
+      <input type="text" placeholder="Name" id="don-data" name="name" class="field name">
+      <input type="hidden" name="id" class="id">
+
+      <div class="buttons">
+          <button disabled class="don-submit">Submit</button>
+          <div class="close">Close</div>
+      </div>
+
+  </form>
+   </div>
+
+
+</div>
+
     <div class="header">
         <div class="logo_cont">
             <img src="images\IMG-20250205-WA0020-removebg-preview.png" alt="">
@@ -20,6 +73,7 @@
                 <li><a href="main.html"><i class="fa-solid fa-house"></i> home </a></li>
                 <li><a href="catalogue.html"> <i class="fa-solid fa-shop"></i> catalogue </a></li>
                 <li><a href="dashboard.html"><i class="fa-solid fa-table-columns"></i></i>dashboard</a></li>
+                <li><a href="donate.html"> <i class="fa-solid fa-hand-holding-medical"></i> donate </a></li>
                 <li><a href="auth.html"> <i class="fa-solid fa-lock"></i> login </a></li>
             </ul>
         </div>
@@ -31,7 +85,8 @@
                 <h4>Name: Efidi Victor</h4>
                 <h4>Matric no: 22/1306</h4>
                 <h4>Phone: 08109495127</h4>
-                <button><i class="fa-solid fa-pen"></i></button>
+                <h4>Hall: Nelson Mandela</h4>
+                <button class="edit_id"><i class="fa-solid fa-pen"></i></button>
             </div>
 
             <div class="box_2">
@@ -59,6 +114,7 @@
                         <thead>
                           <tr>
                             <th>Product</th>
+                            <th>Product Name</th>
                             <th>Claim status</th>
                             <th>Claim Date</th>
                           </tr>
@@ -72,6 +128,7 @@
                         
                             <tr>
                                 <td><div class="exp_img"><img src="images\runningshoes-2048px-09528.webp" alt=""></div></td>
+                                <td>black shoes</td>
                                 <td>Pending</td>
                                 <td>01/03/2025</td>
                               </tr> 
@@ -89,5 +146,101 @@
             </div>
         </div>
     </div>
+
+    <h1 class="sub donor">
+       Donation History
+    </h1>
+
+    <div class="sec3">
+        <div class="cent">
+            <div class="table_cont">
+             
+
+                <section>
+                    <!--for demo wrap-->
+      
+                    <div class="tbl-header">
+                      <table cellpadding="0" cellspacing="0" border="0">
+                        <thead>
+                          <tr>
+                            <th>Product</th>
+                            <th>Product Name</th>
+                            <th>Claimed By:</th>
+                            <th>Claim Date</th>
+                            <th>Claim status</th>
+                            <th>Delivery Date</th>
+                            <th>Approval Status</th>
+                          </tr>
+                        </thead>
+                      </table>
+                    </div>
+                    <div class="tbl-content">
+                      <table cellpadding="0" cellspacing="0" border="0">
+                        <tbody id="tbody">
+                     
+                        
+                            <tr id="drow">
+                                <td><div class="exp_img"><img src="images\runningshoes-2048px-09528.webp" alt=""></div></td>
+                                <td>black shoes</td>
+                                <td>samuel aniekan</td>
+                                <td>01/15/2025
+                                  <div class="don-options">
+                                    <button class="flex-center don-id">Edit</button>
+                                    <button class="flex-center delete_id">Delete</button>
+                                  </div>
+                                </td>
+                                <td>delivered</td>
+                                <td>01/03/2025</td>
+                                <td>approved </td>
+                              </tr> 
+
+
+                              <tr id="drow">
+                                <td><div class="exp_img"><img src="images\runningshoes-2048px-09528.webp" alt=""></div></td>
+                                <td>black shoes</td>
+                                <td>samuel aniekan</td>
+                                <td>01/15/2025
+                                  <div class="don-options">
+                                    <button class="flex-center don-id">Edit</button>
+                                    <button class="flex-center delete_id">Delete</button>
+                                  </div>
+                                </td>
+                                <td>delivered</td>
+                                <td>01/03/2025</td>
+                                <td>approved </td>
+                              </tr> 
+
+                              <tr id="drow">
+                                <td><div class="exp_img"><img src="images\runningshoes-2048px-09528.webp" alt=""></div></td>
+                                <td>black shoes</td>
+                                <td>samuel aniekan</td>
+                                <td>01/15/2025
+                                  <div class="don-options">
+                                    <button class="flex-center don-id">Edit</button>
+                                    <button class="flex-center delete_id">Delete</button>
+                                  </div>
+                                </td>
+                                <td>delivered</td>
+                                <td>01/03/2025</td>
+                                <td>approved </td>
+                              </tr> 
+
+
+                       
+
+                              
+                  
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+                  
+                  
+             
+               
+            </div>
+        </div>
+    </div>
 </body>
+<script src="js/dashboard.js"></script>
 </html>

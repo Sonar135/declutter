@@ -150,7 +150,7 @@
 
 .search{
     position:fixed;
-    bottom:0;
+    bottom:-90px;
     left:0;
     z-index:1000;
     width:100%;
@@ -159,6 +159,10 @@
     display:flex;
     justify-content: center;
     align-items: center;
+}
+
+.search_active{
+    bottom:0;
 }
 
 .input_cont{

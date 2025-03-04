@@ -40,7 +40,7 @@
     color:white;
     font-weight: 600;
     font-size:14px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     text-transform: capitalize;
     white-space: nowrap;
     overflow: hidden;
@@ -91,3 +91,89 @@
     margin:0 auto;
 }
 
+
+.sec3{
+    width:100%;
+    min-height:500px;
+    height:auto;
+    padding-bottom:40px;
+}
+
+.sec3 .cent{
+    width:1300px;
+    min-height:500px;
+    height:auto;
+    margin:0 auto;
+}
+
+.donor{
+    margin-top:10px;
+}
+
+
+.sec3 tbody tr{
+    cursor:pointer;
+}
+
+.sec3 tbody td{
+    position:relative;
+}
+
+/* .sec3 tbody tr:hover{
+    box-shadow: var(--shadow);
+} */
+
+ .don-options{
+    position:absolute;
+    width:600px;
+    height:50px;
+    bottom:-50px;
+    left:-240px;
+    background: var(--accent);
+    display:none;
+    border-radius: 8px;
+    animation: ease_in .4s ease-in-out;
+    z-index:10;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.op_active{
+    display:flex;
+}
+
+
+
+.don-options button{
+    width:100px;
+    height:35px;
+    border-radius: 35px;
+    background: white;
+    color: var(--accent);
+    cursor:pointer;
+}
+
+
+.don-options button:hover{
+    background: var(--accent_hover);
+    color:white;
+}
+
+
+@keyframes ease_in {
+    from{
+        opacity:0;
+        transform: translateY(4px);
+    }
+
+
+    to{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+
+.row-shadow{
+    box-shadow: var(--shadow);
+}

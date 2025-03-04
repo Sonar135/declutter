@@ -4,11 +4,46 @@
     <script src="https://kit.fontawesome.com/b782cf5553.js" crossorigin="anonymous"></script> 
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/catalogue.css">
+    <link rel="stylesheet" href="css/overlay.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
+
+    <div class="screen_overlay">
+        <div class="container action">
+            <div class="ac_cent">
+             <h1>Claim <span id="name">Shoe</span> ?</h1>
+ 
+             <div class="options">
+             <form id="delete_form"> 
+                 <input type="text" id="id" hidden name="id">
+                 <button id="sale_submit">Yes</button></form> 
+                 <button id="no">No</button>
+             </div>
+            </div>
+         </div>
+
+         <!-- <div class="form_cont">
+
+            <h1>Update <span id="update_name">Perfume</span> ?</h1>
+            <form action="" id="edit_form">
+            <input type="text" placeholder="Product Name" id="data" name="name" class="field name">
+            <input type="number" placeholder="Quantity" id="data" name="quantity" class="field quantity">
+            <input type="number" placeholder="price" id="data" name="price" class="field price">
+            <input type="hidden"  id="data" name="id" class="id">
+
+            <div class="buttons">
+                <button disabled class="submit">Submit</button>
+                <div class="close">Close</div>
+            </div>
+
+        </form>
+         </div> -->
+
+
+    </div>
 
     <div class="search">
         <div class="input_cont">
@@ -61,6 +96,7 @@
                 <li><a href="main.html"><i class="fa-solid fa-house"></i> home </a></li>
                 <li><a href="catalogue.html"> <i class="fa-solid fa-shop"></i> catalogue </a></li>
                 <li><a href="dashboard.html"><i class="fa-solid fa-table-columns"></i></i>dashboard</a></li>
+                <li><a href="donate.html"> <i class="fa-solid fa-hand-holding-medical"></i> donate </a></li>
                 <li><a href="auth.html"> <i class="fa-solid fa-lock"></i> login </a></li>
             </ul>
         </div>
@@ -71,9 +107,9 @@
 
     <div class="sec1">
         <div class="action_nav">
-            <span>Categories</span>
+            <!-- <span>Categories</span> -->
             <span>Condition</span>
-            <span>Search</span>
+            <span id="search">Search <i class="fa-solid fa-magnifying-glass"></i></span>
         </div>
         <div class="cent">
             <div class="card">
@@ -86,7 +122,7 @@
                 </div>
 
                 <div class="bottom">
-                    <button>Claim</button>
+                    <button class="claim_id">Claim</button>
 
                     <div class="img"><img src="images\runningshoes-2048px-09528.webp" alt=""></div>
                 </div>
@@ -206,4 +242,5 @@
         </div>
     </div>
 </body>
+<script src="js/catalogue.js"></script>
 </html>

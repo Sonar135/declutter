@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/b782cf5553.js" crossorigin="anonymous"></script> 
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/donate.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="header">
+        <div class="logo_cont">
+            <img src="images\IMG-20250205-WA0020-removebg-preview.png" alt="">
+        </div>
+
+        <div class="menu">
+            <ul>
+                <li><a href="main.html"><i class="fa-solid fa-house"></i> home </a></li>
+                <li><a href="catalogue.html"> <i class="fa-solid fa-shop"></i> catalogue </a></li>
+                <li><a href="dashboard.html"><i class="fa-solid fa-table-columns"></i></i>dashboard</a></li>
+                <li><a href="donate.html"> <i class="fa-solid fa-hand-holding-medical"></i> donate </a></li>
+                <li><a href="auth.html"> <i class="fa-solid fa-lock"></i> login </a></li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <div class="message">
+        
+    </div>
+
+    <div class="header">
+        <div class="logo_cont">
+            <img src="../images\IMG-20250130-WA0017-removebg-preview.png" alt="">
+        </div>
+
+        <div class="menu">
+            <ul>
+                <li><a href="main.html"><i class="fa-solid fa-house"></i> home </a></li>
+                <li><a href="catalogue.html"> <i class="fa-solid fa-shop"></i> catalogue </a></li>
+                <li><a href="dashboard.html"><i class="fa-solid fa-table-columns"></i></i>dashboard</a></li>
+                <li><a href="donate.html"> <i class="fa-solid fa-hand-holding-medical"></i> donate </a></li>
+                <li><a href="auth.html"> <i class="fa-solid fa-lock"></i> login </a></li>
+            </ul>
+        </div>
+    </div>
+    
+
+    <div class="heading">
+        <h1>New Donation</h1>
+    </div>
+
+    <div class="container form_cont">
+        <form id="product_form" enctype="multipart/form-data"><div class="cent">
+
+             <input type="file"  id="img" class="" name="image" accept="image/*">
+            <label for="img" >
+
+                <div class="item_selector field">
+                    <h4 class="animate-text" id="img_label">Product image</h4>          
+                 </div>
+            </label>
+            
+          
+             <input type="hidden"  id="data" class="img_input" name="img_input">
+             <input type="text" placeholder="Item Name" id="data" name="name" class="field">
+             <input type="text" placeholder="Keywords (For Search)" id="data" name="name" class="field">
+
+
+             <input type="hidden"  id="data" class="cat_value" name="category">
+
+
+             <div class="cat_selector field">
+                <h4 class="animate-text">Item Condition</h4> 
+
+
+                 <div class="categories">
+                    
+                     <ul>
+                         <li>New</li>
+                         <li>Fairly Used</li>
+                         <li>Used</li>
+                     </ul>
+                 </div>
+             </div>
+
+
+            
+
+
+             <button disabled="disabled" id="sale_submit" class="field">Submit</button>
+         </div></form> 
+     </div>
+</body>
+<script src="js/donate.js"></script>
+</html>

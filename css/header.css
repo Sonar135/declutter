@@ -5,7 +5,7 @@
     --shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     --accent: #7307f7;
     --accent_tran: #1313139b;
-    --accent_hover:#08519f;
+    --accent_hover:#510da4;
     --accent_disabled:#08519f66;
 }
 
@@ -22,9 +22,12 @@
     text-decoration: none;
     font-weight:400;
     scroll-behavior: smooth;
+    transition: .3s;
 }
 
-
+input::-webkit-inner-spin-button{
+    display: none;
+}
 
 .header{
     width:100%;
@@ -62,7 +65,7 @@ a{
 }
 
 .menu{
-    width:600px;
+    width:650px;
     height:100%;
 }
 
@@ -104,3 +107,8 @@ button:hover{
 }
 
 
+.flex-center{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}

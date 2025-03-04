@@ -6,7 +6,7 @@ table{
     background-color: rgba(255,255,255,0.3);
    }
   .tbl-content{
-    height:480px;
+    height:440px;
     overflow-x:auto;
     margin-top: 0px;
     border: 1px solid rgba(255,255,255,0.3);
@@ -38,9 +38,9 @@ table{
     display:flex;
     justify-content: center;
     align-items: center;
-    color:black;
+    color:white;
     margin:0px auto;
-    background: #70dcfd
+    background: var(--accent)
   }
   
 
@@ -92,7 +92,7 @@ table{
     align-items: center;
     overflow: hidden;
     /* box-shadow: var(--shadow); */
-    border:2px solid var(--accent_reso);
+    border:2px solid var(--accent);
 }
 
 .exp_img img{
