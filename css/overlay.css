@@ -45,7 +45,7 @@
     height:300px;
 }
 
-.ac_cent h1, .form_cont h1, .don-form h1{
+ h1{
     text-align: center;
     color:white;
     margin:30px 0;
@@ -118,7 +118,7 @@
 
 
 
-.form_cont, .don-form{
+.form_cont, .don-form, .reg-reject, .up-reject, .don-reject{
     width:700px;
     height:500px;
     margin:100px auto;
@@ -128,7 +128,7 @@
 
 
 
-.form_cont input, .don-form input{
+form input {
     margin:50px auto;
     width:400px;
     height:40px;
@@ -168,7 +168,7 @@ button:disabled{
 }
 
 
-.form_cont input::placeholder, .don-form input::placeholder{
+ input::placeholder{
     color: rgba(255, 255, 255, 0.789);
 }
 

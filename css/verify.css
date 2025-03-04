@@ -48,3 +48,67 @@ button:hover{
 .donor{
     margin-top:10px;
 }
+
+tbody tr{
+    cursor:pointer;
+}
+
+tbody td{
+    position:relative;
+}
+
+
+.don-options{
+    position:absolute;
+    width:600px;
+    height:50px;
+    bottom:-50px;
+    left:0px;
+    background: var(--accent);
+    display:none;
+    border-radius: 8px;
+    animation: ease_in .4s ease-in-out;
+    z-index:10;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.op_active{
+    display:flex;
+}
+
+
+
+.don-options button{
+    width:100px;
+    height:35px;
+    border-radius: 35px;
+    background: white;
+    color: var(--accent);
+    cursor:pointer;
+}
+
+
+.don-options button:hover{
+    background: var(--accent_hover);
+    color:white;
+}
+
+
+@keyframes ease_in {
+    from{
+        opacity:0;
+        transform: translateY(4px);
+    }
+
+
+    to{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+
+.row-shadow{
+    box-shadow: var(--shadow);
+}

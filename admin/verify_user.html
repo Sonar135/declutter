@@ -5,11 +5,78 @@
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/table.css">
     <link rel="stylesheet" href="../css/verify.css">
+    <link rel="stylesheet" href="../css/overlay.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
+
+  <div class="message">
+
+  </div>
+
+  <div class="screen_overlay">
+
+
+     <div class="reg-reject">
+
+        <h1>Reason for rejecting <span id="update_name">user</span></h1>
+        <form action="" id="reject-reg-form">
+        <input type="text" placeholder="State Reason" id="reg-data" name="name" class="field name">
+
+        <input type="hidden"  name="id" class="id">
+
+        <div class="buttons">
+            <button disabled class="reg-btn">Submit</button>
+            <div class="close">Close</div>
+        </div>
+
+    </form>
+     </div>
+
+
+     <div class="up-reject">
+
+      <h1>Reason for rejecting <span id="update_name">user</span>'s upgrade</h1>
+      <form action="" id="up-reg-form">
+      <input type="text" placeholder="State Reason" id="up-data" name="name" class="field name">
+
+      <input type="hidden"  name="id" class="id">
+
+      <div class="buttons">
+          <button disabled class="up-btn">Submit</button>
+          <div class="close">Close</div>
+      </div>
+
+  </form>
+   </div>
+
+
+   <div class="don-reject">
+
+    <h1>Reason for rejecting <span id="update_name">user</span>'s donation</h1>
+    <form action="" id="don-reg-form">
+    <input type="text" placeholder="State Reason" id="don-data" name="name" class="field name">
+
+    <input type="hidden"  name="id" class="id">
+
+    <div class="buttons">
+        <button disabled class="don-btn">Submit</button>
+        <div class="close">Close</div>
+    </div>
+
+</form>
+ </div>
+
+
+
+
+
+
+</div>
+
+
     <div class="header">
         <div class="logo_cont">
             <img src="../images\IMG-20250205-WA0020-removebg-preview.png" alt="">
@@ -42,7 +109,7 @@
                     <div class="tbl-header">
                       <table cellpadding="0" cellspacing="0" border="0">
                         <thead>
-                          <tr>
+                          <tr >
                             <th>Name</th>
                             <th>Matric no</th>
                             <th>Phone no</th>
@@ -56,9 +123,16 @@
                         <tbody id="tbody">
                      
                         
-                            <tr>
+                            <tr id="drow">
                                 <td>Donald trump</td>
-                                <td>22/1304</td>
+                                <td>22/1304
+
+                                  <div class="don-options">
+                                    <button class="flex-center reg-reject-id">Reject</button>
+                                  <form action="" id="accept-reg"> <input type="hidden" id="accept-reg-name"> <button class="flex-center reg-approve-id">Approve</button></form> 
+                                  </div>
+                                </td>
+                        
                                 <td>08109495127</td>
                                 <td>donald@gmail.com</td>
                               </tr> 
@@ -106,9 +180,15 @@
                         <tbody id="tbody">
                      
                         
-                            <tr>
+                            <tr id="drow">
                                 <td>Donald trump</td>
-                                <td>22/1304</td>
+                                <td>22/1304
+
+                                  <div class="don-options">
+                                    <button class="flex-center up-reject-id">Reject</button>
+                                  <form action="" id="accept-up"> <input type="hidden" id="accept-up-name"> <button class="flex-center reg-approve-id">Approve</button></form> 
+                                  </div>
+                                </td>
                                 <td>08109495127</td>
                                 <td>donald@gmail.com</td>
                               </tr> 
@@ -158,9 +238,15 @@
                          <tbody id="tbody">
                       
                          
-                             <tr>
+                             <tr id="drow">
                                 <td><div class="exp_img"><img src="../images\runningshoes-2048px-09528.webp" alt=""></div></td>
-                                 <td>black shoes</td>
+                                 <td>black shoes
+
+                                  <div class="don-options">
+                                    <button class="flex-center don-reject-id">Reject</button>
+                                  <form action="" id="accept-don"> <input type="hidden" id="accept-don-name"> <button class="flex-center reg-approve-id">Approve</button></form> 
+                                  </div>
+                                 </td>
                                  <td>01-03-2023</td>
                                  <td>jason something</td>
                                </tr> 
@@ -179,4 +265,5 @@
          </div>
      </div>
 </body>
+<script src="../js/verify.js"></script>
 </html>
