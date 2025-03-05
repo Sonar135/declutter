@@ -47,10 +47,10 @@
                             <th>Product name</th>
                             <th>recipient</th>
                             <th>recipient no</th>
-                            <th>recipient email</th>
                             <th>donor</th>
                             <th>donor phone</th>
                             <th>claim date</th>
+                            <th>claim status</th>
                           </tr>
                         </thead>
                       </table>
@@ -60,15 +60,28 @@
                         <tbody id="tbody">
                      
                         
-                            <tr>
+                            <tr id="drow">
                             <td><div class="exp_img"><img src="../images\runningshoes-2048px-09528.webp" alt=""></div></td>
                             <td>black shoe</td>
-                                <td>donald trump</td>
+                                <td>donald trump
+                                  <div class="don-options">
+                                  <form action="" id="ong"> <input type="hidden" id="accept-up-name"> <button class="flex-center">Ongoing</button></form> 
+                                  <form action="" id="comp"> <input type="hidden" id="accept-up-name"> <button class="flex-center">Complete</button></form> 
+                                  <form action="" id="disp"> <input type="hidden" id="accept-up-name"> <button class="flex-center">Disputed</button></form> 
+                                  </div>
+                                </td>
                                 <td>08109495127</td>
-                                <td>donald@gmail.com</td>
-                                <td>george floyd</td>
+
+                              
+                             
+                             
+                                <td>george floyd   </td>
+                                
+                             
+
                                 <td>08094736284</td>
                                 <td>01-03-2025</td>
+                                <td>claimed</td>
                               </tr> 
 
                               
@@ -140,4 +153,5 @@
          </div>
      </div>
 </body>
+<script src="../js/claims.js"></script>
 </html>

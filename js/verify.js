@@ -68,6 +68,15 @@ document.querySelectorAll(".reg-reject-id").forEach((manager,j) =>{
 })
 
 
+document.querySelectorAll(".view-id").forEach((manager,j) =>{
+    manager.addEventListener("click", ()=>{
+        document.querySelector(".screen_overlay").style.display="block"
+        document.querySelector(".id-card").style.display="block"
+
+       
+    })
+})
+
 
 document.querySelectorAll(".up-reject-id").forEach((manager,j) =>{
     manager.addEventListener("click", ()=>{
@@ -95,6 +104,7 @@ document.querySelectorAll(".close").forEach(close=>{
         document.querySelector(".reg-reject").style.display="none"
         document.querySelector(".up-reject").style.display="none"
         document.querySelector(".don-reject").style.display="none"
+        document.querySelector(".id-card").style.display="none"
 
     })
 })

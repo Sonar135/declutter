@@ -118,7 +118,7 @@
 
 
 
-.form_cont, .don-form, .reg-reject, .up-reject, .don-reject{
+.form_cont, .don-form, .reg-reject, .up-reject, .don-reject, .id-card{
     width:700px;
     height:500px;
     margin:100px auto;
@@ -142,6 +142,26 @@ form input {
     background: transparent;
     color:white;
     /* display:block; */
+}
+
+
+
+
+.img_cont{
+    margin:50px auto;
+    width:500px;
+    height:350px;
+    border-radius:24px;
+    border:none;
+    outline:none;
+    overflow: hidden;
+}
+
+.img_cont img{
+    width:100%;
+    width:auto;
+    height:100%;
+    object-fit: cover;
 }
 
 
@@ -177,4 +197,8 @@ button:disabled{
     display:flex;
     justify-content: space-between;
     margin:30px auto;
+}
+
+.b-center{
+    justify-content: center;
 }
