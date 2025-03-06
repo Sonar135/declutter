@@ -168,3 +168,20 @@ fileInput.addEventListener("change", ()=>{
 
 
 
+let don_form= document.querySelector("#don_form");
+
+don_form.addEventListener("submit", (e)=>{
+    e.preventDefault()
+
+    let form_data= new FormData(don_form)
+
+
+    fetch("backend/donate.php", {
+        method: "POST",
+        body: form_data
+    }).then(res=>res.json()).then(data=>{
+        if(data.status==="success"){
+            notify("Donated. Awaiting Approval")
+        }
+    })
+})

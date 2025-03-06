@@ -3,6 +3,11 @@ let data=document.querySelectorAll("#data");
 let don_data=document.querySelectorAll("#don-data")
 
 
+let fileInput=document.querySelector("#img")
+let img_label=document.querySelector("#img_label")
+
+
+
 data.forEach((datum, i)=> {
 
     datum.addEventListener("input", ()=>{
@@ -124,9 +129,6 @@ document.querySelectorAll(".close").forEach(close=>{
         
         
         
-        
-        
-        
         })
         })
 
@@ -137,4 +139,155 @@ document.querySelector("#no").addEventListener("click", ()=>{
     document.querySelector(".action").style.display="none"
     document.querySelector("#name").textContent=""
     document.querySelector("#id").value=""
+})
+
+
+fileInput.addEventListener("change", ()=>{
+    const file = fileInput.files[0]; // Get the first file
+
+    img_label.textContent = `${file.name}`;
+    document.querySelector(".img_input").value=`${file.name}`
+
+    const event = new Event("input", { bubbles: true });
+    document.querySelector(".img_input").dispatchEvent(event);
+        // sale_submit.disabled=false;
+ 
+})
+
+
+
+
+fetch("backend/claim-history.php", {
+    method:"GET",
+}).then(res=>res.json()).then(data=>{
+    if(data.status==="empty"){
+
+    }
+
+    else{
+        data.forEach(datum=>{
+
+            let delivery_date= datum.delivery_date===""?"not delivered":datum.delivery_date
+            document.querySelector(".claims").innerHTML+=`
+               <tr>
+                                <td><div class="exp_img"><img src="pictures/${datum.photo}" alt=""></div></td>
+                                <td>${datum.name}</td>
+                                <td>${datum.status}</td>
+                                <td>${datum.claim_date}</td>
+                                <td>${delivery_date}</td>
+                              </tr> `
+        })
+    }
+
+
+})
+
+
+
+fetch("backend/donate-history.php", {
+    method:"GET",
+}).then(res=>res.json()).then(data=>{
+    if(data.status==="empty"){
+
+    }
+
+    else{
+        data.forEach(datum=>{
+            let delivery_date= datum.delivery_date===""?"not delivered":datum.delivery_date
+            document.querySelector("#donated").innerHTML+=`
+                            <tr id="drow">
+                                <td><div class="exp_img"><img src="pictures/${datum.photo}" alt=""></div></td>
+                                <td>${datum.name}</td>
+                                <td>${datum.recipient}</td>
+                                <td>${datum.claim_date}
+                                  <div class="don-options">
+                                    <button class="flex-center don-id">Edit</button>
+                                    <button class="flex-center delete_id">Delete</button>
+                                  </div>
+                                </td>
+                                <td>${datum.claim_status}</td>
+                                <td>${delivery_date}</td>
+                                <td>${datum.donation_status}</td>
+                              </tr> `
+
+
+                    document.querySelector("#total-don").textContent=`donated: ${datum.num}`
+        })
+    }
+
+
+    document.querySelectorAll(".don-id").forEach((manager,j) =>{
+        manager.addEventListener("click", ()=>{
+            document.querySelector(".screen_overlay").style.display="block"
+            document.querySelector(".don-form").style.display="block"
+            document.querySelector(".name").value=`${data[j].name}`
+            document.querySelector(".id").value=`${data[j].id}`
+            document.querySelector(".img").value=`${data[j].photo}`
+            document.querySelector("#img_label").textContent=`${data[j].photo}`
+            document.querySelector(".name").dispatchEvent(action);
+           
+        })
+    })
+
+
+
+    document.querySelectorAll(".delete_id").forEach((manager,j) =>{
+        manager.addEventListener("click", ()=>{
+        document.querySelector(".screen_overlay").style.display="block"
+        document.querySelector(".action").style.display="block"
+        document.querySelector("#name").innerHTML=`${data[j].name}`
+        document.querySelector("#id").value=data[j].id
+        
+        
+        
+        })
+        })
+
+    
+
+
+})
+
+
+
+
+fetch("backend/profile.php", {
+    method:"GET",
+}).then(res=>res.json()).then(data=>{
+    if(data.status==="empty"){
+
+    }
+
+    else{
+        data.forEach(datum=>{
+
+        document.querySelector(".box_1").innerHTML+=` 
+           <h4>Name:${datum.name}</h4>
+                <h4>Matric no: ${datum.matric}</h4>
+                <h4>Phone: ${datum.phone}</h4>
+                <h4>Hall: ${datum.hall}</h4>
+                <button class="edit_id"><i class="fa-solid fa-pen"></i></button>`
+        })
+
+
+        document.querySelector("#tier").textContent=`Tier: ${datum.tier}`
+    }
+
+
+})
+
+
+
+fetch("backend/get-sec-claim.php", {
+    method:"GET",
+}).then(res=>res.json()).then(data=>{
+    if(data.status==="empty"){
+
+    }
+
+    else{
+        document.querySelector("#total-clmd").textContent=`donated: ${data.num}`
+    }
+
+
 })

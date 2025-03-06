@@ -177,3 +177,61 @@
 .row-shadow{
     box-shadow: var(--shadow);
 }
+
+input[type="file"]{
+    display:none;
+}
+
+
+.item_selector{
+    position:relative;
+    margin:50px auto;
+    width:400px;
+    height:40px;
+    border-radius:24px;
+    font-size:16px;
+    font-weight:400;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent);
+    color:white;
+    cursor:pointer;
+    transition:.6s;
+}
+
+.item_selector h4{
+    text-align: center;
+    font-size:16px;
+    font-weight:400;
+    color:white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding:0 20px;
+}
+
+.animate-text{
+    animation: expand .5s ease-in-out;
+}
+
+
+@keyframes expand {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.item_selector:hover, .cat_selector:hover{
+    background: var(--accent_hover);
+    transition:.6s;
+}

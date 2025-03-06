@@ -18,6 +18,8 @@
 
         $get=mysqli_query($conn, "SELECT * from items where donor_email='$email'");
 
+        $num=mysqli_num_rows($get);
+
         if(mysqli_num_rows($get)<1){
             echo json_encode([
                 "status" => "empty"
@@ -36,6 +38,7 @@
                 "delivery_date" => $row["delivery_date"],
                 "donation_status" => $row["donation_status"],
                 "recipient" => $row["recipient"],
+                "num" => $num,
             ];
         }
 

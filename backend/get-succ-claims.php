@@ -16,8 +16,7 @@
     
     $data=[];
 
-    $get = mysqli_query($conn, "SELECT * FROM items WHERE donation_status='approved' AND (claim_status='' OR claim_status='disputed')");
-
+        $get=mysqli_query($conn, "SELECT * from items where claim_status='complete'");
 
         if(mysqli_num_rows($get)<1){
             echo json_encode([
@@ -30,8 +29,10 @@
             $data[]=[
                 "id" => $row["id"],
                 "name" => $row["name"],
+                "recipeint" => $row["recipient"],
+                "donor" => $row["donor"],
                 "photo" => $row["photo"],
-                "state" => $row["state"],
+                "delivery_date" => $row["delivery_date"],
             ];
         }
 

@@ -32,7 +32,7 @@
                 "photo" => $row["photo"],
                 "state" => $row["state"],
                 "status" => $row["claim_status"],
-                "date" => $row["claim_date"],
+                "claim_date" => $row["claim_date"],
                 "delivery_date" => $row["delivery_date"],
             ];
         }
@@ -40,3 +40,6 @@
 
    echo json_encode($data);
 ?>
+
+
+

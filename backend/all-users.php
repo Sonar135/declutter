@@ -16,8 +16,7 @@
     
     $data=[];
 
-    $get = mysqli_query($conn, "SELECT * FROM items WHERE donation_status='approved' AND (claim_status='' OR claim_status='disputed')");
-
+        $get=mysqli_query($conn, "SELECT * from users");
 
         if(mysqli_num_rows($get)<1){
             echo json_encode([
@@ -28,10 +27,9 @@
 
         while($row=mysqli_fetch_assoc($get)){
             $data[]=[
-                "id" => $row["id"],
                 "name" => $row["name"],
-                "photo" => $row["photo"],
-                "state" => $row["state"],
+                "matric" => $row["matric"],
+               
             ];
         }
 

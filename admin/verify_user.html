@@ -41,7 +41,7 @@
 
         <h1>Reason for rejecting <span id="update_name">user</span></h1>
         <form action="" id="reject-reg-form">
-        <input type="text" placeholder="State Reason" id="reg-data" name="name" class="field name">
+        <input type="text" placeholder="State Reason" id="reg-data" name="reason" class="field name">
 
         <input type="hidden"  name="id" class="id">
 
@@ -58,7 +58,7 @@
 
       <h1>Reason for rejecting <span id="update_name">user</span>'s upgrade</h1>
       <form action="" id="up-reg-form">
-      <input type="text" placeholder="State Reason" id="up-data" name="name" class="field name">
+      <input type="text" placeholder="State Reason" id="up-data" name="reason" class="field name">
 
       <input type="hidden"  name="id" class="id">
 
@@ -75,7 +75,7 @@
 
     <h1>Reason for rejecting <span id="update_name">user</span>'s donation</h1>
     <form action="" id="don-reg-form">
-    <input type="text" placeholder="State Reason" id="don-data" name="name" class="field name">
+    <input type="text" placeholder="State Reason" id="don-data" name="reason" class="field name">
 
     <input type="hidden"  name="id" class="id">
 
@@ -148,7 +148,7 @@
                                   <div class="don-options">
                                     <button class="flex-center reg-reject-id">Reject</button>
                                     <button class="flex-center view-id">view id</button>
-                                  <form action="" id="accept-reg"> <input type="hidden" id="accept-reg-name"> <button class="flex-center reg-approve-id">Approve</button></form> 
+                                  <form action="" id="accept-reg"> <input type="hidden" id="accept-reg-id" name="id"> <button class="flex-center reg-approve-id">Approve</button></form> 
                                   </div>
                                 </td>
                         
@@ -205,7 +205,7 @@
 
                                   <div class="don-options">
                                     <button class="flex-center up-reject-id">Reject</button>
-                                  <form action="" id="accept-up"> <input type="hidden" id="accept-up-name"> <button class="flex-center reg-approve-id">Approve</button></form> 
+                                  <form action="" id="accept-up"> <input type="hidden" id="accept-up-id" name="id"> <button class="flex-center reg-approve-id">Approve</button></form> 
                                   </div>
                                 </td>
                                 <td>08109495127</td>
@@ -263,7 +263,7 @@
 
                                   <div class="don-options">
                                     <button class="flex-center don-reject-id">Reject</button>
-                                  <form action="" id="accept-don"> <input type="hidden" id="accept-don-name"> <button class="flex-center reg-approve-id">Approve</button></form> 
+                                  <form action="" id="accept-don"> <input type="hidden" id="accept-don-id" name="id"> <button class="flex-center reg-approve-id">Approve</button></form> 
                                   </div>
                                  </td>
                                  <td>01-03-2023</td>
@@ -285,4 +285,5 @@
      </div>
 </body>
 <script src="../js/verify.js"></script>
+<script src="../js/notify.js"></script>
 </html>

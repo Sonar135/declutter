@@ -12,6 +12,11 @@
 </head>
 <body>
 
+  <div class="message">
+        
+  </div>
+
+
   <div class="screen_overlay">
     <div class="container action">
         <div class="ac_cent">
@@ -49,7 +54,19 @@
 
       <h1>Update <span id="update_name">Item</span> ?</h1>
       <form action="" id="edit-don-form">
-      <input type="text" placeholder="Name" id="don-data" name="name" class="field name">
+
+        <input type="file"  id="img" class="" name="image" accept="image/*">
+        <label for="img" >
+
+            <div class="item_selector">
+                <h4 class="animate-text" id="img_label">Product image</h4>          
+             </div>
+        </label>
+        
+      
+         <input type="hidden"  id="don-data" class="img_input" name="img_input" class="img">
+
+      <input type="text" placeholder="Name" id="don-data" name="name" class="name">
       <input type="hidden" name="id" class="id">
 
       <div class="buttons">
@@ -90,9 +107,9 @@
             </div>
 
             <div class="box_2">
-                <h4>donated: 0</h4>
-                <h4>successfully claimed: 7</h4>
-                <h4>Tier: Recipient</h4>
+                <h4 id="total-don">donated: 0</h4>
+                <h4 id="total-clmd">successfully claimed: 7</h4>
+                <h4 id="tier">Tier: Recipient</h4>
             </div>
         </div>
     </div>
@@ -124,7 +141,7 @@
                     </div>
                     <div class="tbl-content">
                       <table cellpadding="0" cellspacing="0" border="0">
-                        <tbody id="tbody">
+                        <tbody id="tbody claims">
                      
                         
                             <tr>
@@ -178,7 +195,7 @@
                     </div>
                     <div class="tbl-content">
                       <table cellpadding="0" cellspacing="0" border="0">
-                        <tbody id="tbody">
+                        <tbody id="tbody donated">
                      
                         
                             <tr id="drow">
@@ -245,4 +262,5 @@
     </div>
 </body>
 <script src="js/dashboard.js"></script>
+<script src="js/notify.js"></script>
 </html>

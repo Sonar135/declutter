@@ -13,11 +13,15 @@
         $phone=$_SESSION["phone"];
     }
 
+
+    if(isset($_GET["v"])){
+        $v=$_GET["v"];
+    }
+
     
     $data=[];
 
-    $get = mysqli_query($conn, "SELECT * FROM items WHERE donation_status='approved' AND (claim_status='' OR claim_status='disputed')");
-
+        $get=mysqli_query($conn, "SELECT * from users where email='$v'");
 
         if(mysqli_num_rows($get)<1){
             echo json_encode([
@@ -28,10 +32,12 @@
 
         while($row=mysqli_fetch_assoc($get)){
             $data[]=[
-                "id" => $row["id"],
                 "name" => $row["name"],
-                "photo" => $row["photo"],
-                "state" => $row["state"],
+                "matric" => $row["matric"],
+                "phone" => $row["phone"],
+                "hall" => $row["hall"],
+                "email" => $row["email"],
+                "tier" => $row["is_donor"],
             ];
         }
 

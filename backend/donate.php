@@ -21,10 +21,14 @@
     $temp_img=$_FILES['image']['tmp_name'];
     $status="pending";
 
-    move_uploaded_file($temp_img, "../images/$img");
+    move_uploaded_file($temp_img, "../pictures/$img");
     $insert=mysqli_query($conn, "INSERT into items (photo, name, keywords, state, donor, donor_no, donor_email, upload_date, donation_status)
      values('$img', '$name', '$keywords', '$condition', '$user', '$phone', '$email', CURDATE(), '$status')");
 
 
-   
+    if($insert){
+        echo json_encode([
+            "status" => "success"
+        ]);
+    }
 ?>
