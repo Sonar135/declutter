@@ -437,3 +437,30 @@ upgrade.addEventListener("submit", (e)=>{
         }
     })
 })
+
+
+
+
+
+
+fetch("backend/user_session.php", {
+    method:"GET"
+})
+
+.then(res=>res.json()).then(session_data=>{
+    if(session_data.isDonor=="no"){
+  
+
+        document.querySelector(".sec3").style.display="none"
+        document.querySelector(".donor").style.display="none"
+        
+      
+
+    }
+
+  
+
+
+})
+
+

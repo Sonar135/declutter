@@ -96,6 +96,18 @@
     background: var(--accent);
 }
 
+.form_cont button:disabled{
+    border: 1px solid var(--accent_disabled);
+    cursor:default;
+}
+
+.form_cont button:disabled:hover{
+    border: 1px solid var(--accent_disabled);
+    cursor:default;
+    color:var(--accent);
+    background: transparent;
+}
+
 
 .form_cont a{
     margin:30px auto;

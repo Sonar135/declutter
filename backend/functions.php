@@ -7,10 +7,10 @@
 
    
         move_uploaded_file($temp_img, "../pictures/$img_input");
-        $insert= "INSERT INTO users (name,  email,  password, phone, hall, matric, photo) VALUES (?,?,?,?,?,?,?)";   
+        $insert= "INSERT INTO users (name,  email,  password, phone, hall, matric, photo, type) VALUES (?,?,?,?,?,?,?,?)";   
         
       
-
+        $type="user";
   
 
         $stmt2=mysqli_stmt_init($conn);
@@ -23,7 +23,7 @@
         
         $hashed_pwd=password_hash($password, PASSWORD_DEFAULT);
 
-        mysqli_stmt_bind_param($stmt2, 'sssssss', $fname,   $email,  $hashed_pwd, $phone, $hall, $matric, $img_input);
+        mysqli_stmt_bind_param($stmt2, 'ssssssss', $fname,   $email,  $hashed_pwd, $phone, $hall, $matric, $img_input, $type);
         mysqli_stmt_execute($stmt2);
         mysqli_stmt_close($stmt2);
         
@@ -166,13 +166,15 @@
 
             $is_approved=mysqli_query($conn, "SELECT * FROM users WHERE matric='$matric' and is_approved='yes'");
             if($is_approved_row=mysqli_fetch_assoc($is_approved)){
-                
+
                 session_start();
 
                 $_SESSION["id"]=$uidexist["id"];
                 $_SESSION["email"]=$uidexist["email"];
                 $_SESSION["name"]=$uidexist["name"];
                 $_SESSION["phone"]=$uidexist["phone"];
+                $_SESSION["type"]=$uidexist["type"];
+                $_SESSION["is_donor"]=$uidexist["is_donor"];
                 
               
          
@@ -181,9 +183,15 @@
     
                 echo json_encode([
                     'status' => 'success',
-                    'redirect_url' => 'main.html'
+                    'redirect_url' => 'catalogue.html'
                 ]);
             }
+
+
+
+            else if(!$is_approved_row){
+                echo json_encode(['status' => 'unapproved']);
+              }
 
       
         }
@@ -213,7 +221,7 @@
     function admin_exists($conn, $email){
         $result;
     
-        $query="SELECT * FROM admin WHERE email=?";
+        $query="SELECT * FROM users WHERE email=? and type='admin'";
     
         $stmt=mysqli_stmt_init($conn);
 
@@ -243,7 +251,7 @@
     function create_admin($conn, $email, $password ){
     
   
-        $insert= "INSERT INTO admin ( email,  password) VALUES (?,?)";
+        $insert= "INSERT INTO users ( email,  password, type) VALUES (?,?,?)";
 
         $stmt2=mysqli_stmt_init($conn);
 
@@ -251,11 +259,12 @@
             header("location: res_auth.php?error=stmtfailed");
             exit();
         }
-    
+        
+        $type="admin";
         
         $hashed_pwd=password_hash($password, PASSWORD_DEFAULT);
 
-        mysqli_stmt_bind_param($stmt2, 'ss',  $email,  $hashed_pwd);
+        mysqli_stmt_bind_param($stmt2, 'sss',  $email,  $hashed_pwd, $type);
         mysqli_stmt_execute($stmt2);
         mysqli_stmt_close($stmt2);
         
@@ -319,6 +328,7 @@
 
             $_SESSION["id"]=$uidexist["id"];
             $_SESSION["email"]=$uidexist["email"];
+            $_SESSION["type"]=$uidexist["type"];
             
           
      
@@ -327,7 +337,7 @@
 
             echo json_encode([
                 'status' => 'success',
-                'redirect_url' => 'main.html'
+                'redirect_url' => 'admin/verify_user.html'
             ]);
             exit();
         }
