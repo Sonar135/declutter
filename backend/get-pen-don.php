@@ -27,10 +27,13 @@
 
         while($row=mysqli_fetch_assoc($get)){
             $data[]=[
+                "photo" => $row["photo"],
                 "name" => $row["name"],
-                "matric" => $row["matric"],
-                "phone" => $row["phone"],
-                "email" => $row["email"],
+                "upload_date" => $row["upload_date"],
+                "quality" => $row["state"],
+                "donor" => $row["donor"],
+                "donor_email" => $row["donor_email"],
+                "id" => $row["id"],
             ];
         }
 

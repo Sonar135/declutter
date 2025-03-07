@@ -26,7 +26,7 @@
 
 
       <div class="img_cont flex-center">
-        <img src="../images\WhatsApp-Image-2024-03-30-at-8.36.43-AM.jpeg" alt="">
+        <img id="id-image" src="../images\WhatsApp-Image-2024-03-30-at-8.36.43-AM.jpeg" alt="">
       </div>
 
       <div class="buttons b-center">
@@ -39,11 +39,11 @@
 
      <div class="reg-reject">
 
-        <h1>Reason for rejecting <span id="update_name">user</span></h1>
+        <h1>Reason for rejecting <span id="reg-name">user</span></h1>
         <form action="" id="reject-reg-form">
         <input type="text" placeholder="State Reason" id="reg-data" name="reason" class="field name">
 
-        <input type="hidden"  name="id" class="id">
+        <input type="hidden"  name="id" class="reg-id">
 
         <div class="buttons">
             <button disabled class="reg-btn">Submit</button>
@@ -56,11 +56,11 @@
 
      <div class="up-reject">
 
-      <h1>Reason for rejecting <span id="update_name">user</span>'s upgrade</h1>
-      <form action="" id="up-reg-form">
+      <h1>Reason for rejecting <span id="up-name">user</span>'s upgrade</h1>
+      <form action="" id="reject-up-form">
       <input type="text" placeholder="State Reason" id="up-data" name="reason" class="field name">
 
-      <input type="hidden"  name="id" class="id">
+      <input type="hidden"  name="id" class="up-id">
 
       <div class="buttons">
           <button disabled class="up-btn">Submit</button>
@@ -73,11 +73,11 @@
 
    <div class="don-reject">
 
-    <h1>Reason for rejecting <span id="update_name">user</span>'s donation</h1>
-    <form action="" id="don-reg-form">
+    <h1>Reason for rejecting <span id="don-name">user</span>'s donation</h1>
+    <form action="" id="reject-don-form">
     <input type="text" placeholder="State Reason" id="don-data" name="reason" class="field name">
 
-    <input type="hidden"  name="id" class="id">
+    <input type="hidden"  name="id" class="don-id">
 
     <div class="buttons">
         <button disabled class="don-btn">Submit</button>
@@ -138,7 +138,7 @@
                     </div>
                     <div class="tbl-content">
                       <table cellpadding="0" cellspacing="0" border="0">
-                        <tbody id="tbody">
+                        <tbody id="tbody render-reg">
                      
                         
                             <tr id="drow">
@@ -196,7 +196,7 @@
                     </div>
                     <div class="tbl-content">
                       <table cellpadding="0" cellspacing="0" border="0">
-                        <tbody id="tbody">
+                        <tbody id="tbody render-up">
                      
                         
                             <tr id="drow">
@@ -246,6 +246,7 @@
                                 <th>Product</th>
                                 <th>Product Name</th>
                                 <th>upload Date</th>
+                                <th>Quality</th>
                                 <th>Donor</th>
                                
                               </tr>
@@ -254,7 +255,7 @@
                      </div>
                      <div class="tbl-content">
                        <table cellpadding="0" cellspacing="0" border="0">
-                         <tbody id="tbody">
+                         <tbody id="tbody render-don">
                       
                          
                              <tr id="drow">
@@ -267,6 +268,7 @@
                                   </div>
                                  </td>
                                  <td>01-03-2023</td>
+                                 <td>used</td>
                                  <td>jason something</td>
                                </tr> 
  

@@ -63,8 +63,6 @@ document.querySelectorAll(".don-id").forEach((manager,j) =>{
         document.querySelector(".screen_overlay").style.display="block"
         document.querySelector(".don-form").style.display="block"
         document.querySelector(".name").value=`${data[j].name}`
-        document.querySelector(".quantity").value=`${data[j].quantity}`
-        document.querySelector(".price").value=`${data[j].price}`
         document.querySelector(".id").value=`${data[j].id}`
         document.querySelector(".name").dispatchEvent(action);
        
@@ -267,11 +265,30 @@ fetch("backend/profile.php", {
                 <h4>Phone: ${datum.phone}</h4>
                 <h4>Hall: ${datum.hall}</h4>
                 <button class="edit_id"><i class="fa-solid fa-pen"></i></button>`
+
+
+                    let tier= datum.tier==="yes"?"donor":"recipient"
+
+                   document.querySelector("#tier").textContent=`Tier: ${tier}`
         })
 
+        
 
-        document.querySelector("#tier").textContent=`Tier: ${datum.tier}`
+     
     }
+
+
+    document.querySelectorAll(".edit_id").forEach((manager,j) =>{
+        manager.addEventListener("click", ()=>{
+            document.querySelector(".screen_overlay").style.display="block"
+            document.querySelector(".form_cont").style.display="block"
+            document.querySelector(".name").value=`${data[j].name}`
+            document.querySelector(".phone").value=`${data[j].phone}`
+            document.querySelector(".hall").value=`${data[j].hall}`
+            document.querySelector(".name").dispatchEvent(action);
+           
+        })
+    })
 
 
 })
@@ -290,4 +307,95 @@ fetch("backend/get-sec-claim.php", {
     }
 
 
+})
+
+
+
+let edit_form= document.querySelector("#edit_form");
+
+edit_form.addEventListener("submit", (e)=>{
+    e.preventDefault()
+
+    let form_data= new FormData(edit_form)
+
+
+    fetch("backend/update-prof.php", {
+        method: "POST",
+        body: form_data
+    }).then(res=>res.json()).then(data=>{
+        if(data.status==="success"){
+            notify("profile updated")
+
+
+            setTimeout(()=>{
+                location.reload()
+            },500)
+
+          
+        }
+    })
+})
+
+
+let delete_form= document.querySelector("#delete_form");
+
+
+
+
+
+delete_form.forEach(form=>{
+    form.addEventListener("submit", (e)=>{
+        e.preventDefault()
+    
+        let form_data= new FormData(form)
+    
+    
+        fetch("backend/delete-item.php", {
+            method: "POST",
+            body: form_data
+        }).then(res=>res.json()).then(data=>{
+            if(data.status==="success"){
+                notify("item deleted")
+
+
+                setTimeout(()=>{
+                    location.reload()
+                },500)
+            }
+        })
+    })
+})
+
+
+
+
+
+
+
+
+
+
+let don_form= document.querySelector("#edit-don-form");
+
+don_form.addEventListener("submit", (e)=>{
+    e.preventDefault()
+
+    let form_data= new FormData(don_form)
+
+
+    fetch("backend/update-item.php", {
+        method: "POST",
+        body: form_data
+    }).then(res=>res.json()).then(data=>{
+        if(data.status==="success"){
+            notify("item updated")
+
+
+            setTimeout(()=>{
+                location.reload()
+            },500)
+
+          
+        }
+    })
 })

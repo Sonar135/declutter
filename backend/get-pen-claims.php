@@ -29,7 +29,7 @@
             $data[]=[
                 "id" => $row["id"],
                 "name" => $row["name"],
-                "recipeint" => $row["recipient"],
+                "recipient" => $row["recipient"],
                 "recipient_no" => $row["recipient_no"],
                 "donor" => $row["donor"],
                 "donor_no" => $row["donor_no"],

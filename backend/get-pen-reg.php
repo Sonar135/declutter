@@ -31,6 +31,8 @@
                 "matric" => $row["matric"],
                 "phone" => $row["phone"],
                 "email" => $row["email"],
+                "id" => $row["id"],
+                "photo" => $row["photo"],
             ];
         }
 

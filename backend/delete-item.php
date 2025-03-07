@@ -20,7 +20,7 @@
 
 
 
-    $query= mysqli_query($conn, "DELETE from items set where id='$id'");
+    $query= mysqli_query($conn, "DELETE from items where id='$id'");
 
     if($query){
         echo json_encode([
