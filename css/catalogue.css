@@ -180,6 +180,12 @@
     outline:none;
     background: white;
     padding:20px;
+    margin:0;
+    color:black;
+}
+
+.input_cont input::placeholder{
+    color:rgb(132, 128, 128);
 }
 
 .input_cont button{
@@ -202,4 +208,142 @@
 
 .input_cont button:hover{
     background: var(--accent_hover);
+}
+
+
+
+
+/* filtering */
+
+
+#cat{
+    position:relative;
+}
+
+
+.large_select{
+    width:200px;
+    height:250px;
+    position:absolute;
+    border:1px solid var(--accent);
+    top:38px;
+    left:-100px;
+    background: white;
+    cursor:default;
+    animation: fade_in .5s ease-in-out;
+    z-index:100;
+    display:none;
+}
+
+
+@keyframes fade_in {
+    0% {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+    100% {
+       opacity:1;
+        transform: translateY(0);
+    }
+  
+}
+
+.large_select ul{
+    width:100%;
+    height:190px;
+    padding:10px 0;
+    display:block;
+    overflow-y: scroll;
+}
+
+.large_select ul li{
+    width:100%;
+    text-align: center;
+    margin:14px 0;
+    color: var(--accent);
+    font-weight:600;
+}
+
+
+ .sub{
+    width:100%;
+    height:40px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+ .sub button{
+    padding:5px 30px;
+    background: var(--accent);
+    color:white;
+    font-size:14px;
+    font-weight:600;
+    border-radius: 6px;
+    border: none;
+    cursor:pointer;
+    transition:.5s;
+    width:auto;
+    height:auto;
+}
+
+ .sub button:disabled{
+    background: var(--accent_disabled);
+    cursor:default;
+    transition:.5s;
+}
+
+.sub button:hover{
+    background: var(--accent_hover);
+    transition:.5s;
+}
+ .sub button:disabled:hover{
+    background: var(--accent_disabled);
+}
+
+
+
+
+
+ .large_select ul li{
+    margin:10px 0;
+    text-align: center;
+    width:100%;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.5s;
+    border-radius: 8px;
+    animation: rise_li .5s ease-in-out;
+}
+
+.large_select ul li:hover{
+    background: var(--accent_disabled);
+    transition:.3s;
+    color:var(--accent);
+}
+
+
+
+.large_select ul::-webkit-scrollbar {
+    width: 2px;
+} 
+.large_select ul::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px white; 
+} 
+.large_select ul::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px var(--accent_reso); 
+}
+
+
+.large_select .selected{
+    background: var(--accent);
+    transition:.3s;
+    color:white;
+}
+
+ .large_select .selected:hover{
+    background: var(--accent);
+    color:white;
 }

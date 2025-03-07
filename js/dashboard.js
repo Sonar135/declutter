@@ -269,6 +269,18 @@ fetch("backend/profile.php", {
 
                     let tier= datum.tier==="yes"?"donor":"recipient"
 
+                    document.querySelector("#up-id").value=`${datum.id}`
+
+                    if(datum.tier==="yes"){
+                        document.querySelector("#upgrade").style.display="none";
+                    }
+
+                    if(datum.tier==="pending"){
+                        document.querySelector("#upgrade").style.display="none";
+                        document.querySelector(".pending").style.display="block";
+
+                    }
+
                    document.querySelector("#tier").textContent=`Tier: ${tier}`
         })
 
@@ -337,7 +349,7 @@ edit_form.addEventListener("submit", (e)=>{
 })
 
 
-let delete_form= document.querySelector("#delete_form");
+let delete_form= document.querySelectorAll("#delete_form");
 
 
 
@@ -389,6 +401,32 @@ don_form.addEventListener("submit", (e)=>{
     }).then(res=>res.json()).then(data=>{
         if(data.status==="success"){
             notify("item updated")
+
+
+            setTimeout(()=>{
+                location.reload()
+            },500)
+
+          
+        }
+    })
+})
+
+
+let upgrade= document.querySelector("#upgrade");
+
+upgrade.addEventListener("submit", (e)=>{
+    e.preventDefault()
+
+    let form_data= new FormData(upgrade)
+
+
+    fetch("backend/request_up.php", {
+        method: "POST",
+        body: form_data
+    }).then(res=>res.json()).then(data=>{
+        if(data.status==="success"){
+            notify("upgrade request sent")
 
 
             setTimeout(()=>{

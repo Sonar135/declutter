@@ -65,6 +65,26 @@
     background: transparent;
 }
 
+.form_cont label{
+    width:200px;
+    height:40px;
+    background: var(--accent);
+    border-radius: 40px;
+    color:white;
+    cursor:pointer;
+    margin-right:100px;
+  
+}
+
+.form_cont label h4{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /* padding:0 12px; */
+    width:180px;
+    text-align: center;
+}
+
 .input_cont:nth-child(1) input , .input_cont:nth-child(4) input{
     width:100%;
    
@@ -109,6 +129,19 @@
 .form_cont button:hover{
     color:white;
     background: var(--accent);
+}
+
+
+.form_cont button:disabled{
+    border: 1px solid var(--accent_disabled);
+    cursor:default;
+}
+
+.form_cont button:disabled:hover{
+    border: 1px solid var(--accent_disabled);
+    cursor:default;
+    color:var(--accent);
+    background: transparent;
 }
 
 

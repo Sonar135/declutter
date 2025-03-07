@@ -1,4 +1,4 @@
-let product_form=document.querySelector("#product_form");
+let product_form=document.querySelector("#don_form");
 let message=document.querySelector(".message");
 let product_data=document.querySelectorAll("#data");
 let data=document.querySelectorAll("#data");
@@ -12,16 +12,7 @@ let fields=document.querySelectorAll(".field")
 let cat_value=document.querySelector(".cat_value");
 
 
-const notify=(text)=>{
-    message.textContent=text;
 
-    message.style.display="flex";
-
-
-    setTimeout(() => {
-        message.style.display="none";
-        }, 7000);
-}
 
 
 fields.forEach((field, i) =>{

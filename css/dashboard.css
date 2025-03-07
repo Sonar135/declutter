@@ -235,3 +235,29 @@ input[type="file"]{
     background: var(--accent_hover);
     transition:.6s;
 }
+
+.box_2 button{
+    min-width:120px;
+    padding:0 20px;
+    width:auto;
+    height:40px;
+    border-radius: 40px;
+    margin:20px 0;
+    background: white;
+    color:var(--accent);
+    box-shadow: var(--shadow);
+}
+
+.box_2 button:hover{
+    background: var(--accent);
+    color:white;
+}
+
+#upgrade{
+    /* display:none; */
+}
+
+.pending{
+    color:white;
+    display:none;
+}

@@ -50,12 +50,7 @@
 
     </div>
 
-    <div class="search">
-        <div class="input_cont">
-            <input type="text" placeholder="Search">
-           <button> <i class="fa-solid fa-magnifying-glass"></i></button>
-        </div>
-    </div>
+ 
 
     <div class="floating_sign">
         <div class="sign">
@@ -111,11 +106,37 @@
   
 
     <div class="sec1">
-        <div class="action_nav">
+      <form action="" id="filter_form"> <div class="action_nav">
             <!-- <span>Categories</span> -->
-            <span>Condition</span>
+            <span id="cat">Condition
+
+                <div class="large_select">
+                    <input type="text" hidden id="cat_input" name="condition">
+                        <ul>
+                         <li>new</li>
+                         <li>fairly used</li>
+                         <li>used</li>
+                       
+                        </ul>
+
+                        <div class="sub">
+                            <button  class="filter_button">filter</button>
+                       </div>
+                    </div>
+
+
+            </span>
             <span id="search">Search <i class="fa-solid fa-magnifying-glass"></i></span>
+
+            
         </div>
+        <div class="search">
+            <div class="input_cont">
+                <input type="text" placeholder="Search" name="search">
+               <button> <i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        </div>
+    </form> 
         <div class="cent render">
             <div class="card">
                 <div class="top">

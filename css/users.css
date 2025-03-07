@@ -40,7 +40,7 @@
     margin:30px 60px;
     border-radius: 12px;
     box-shadow: var(--shadow);
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .patient_card h4{
@@ -71,7 +71,7 @@
 }
 
 
-.patient_card:hover{
+/* .patient_card:hover{
     background: var(--accent);
 }
 
@@ -81,4 +81,4 @@
 
 .patient_card:hover .ico_cont{
     border-bottom: 1px solid rgba(255, 255, 255, 0.232);
-}
+} */

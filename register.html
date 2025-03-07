@@ -34,34 +34,42 @@
         <div class="cent">
             <h1>Create Account</h1>
 
-         <form action="" id="consult_form">  <div class="form_cont">
+         <form action="" id="reg_form">  <div class="form_cont">
                 <div class="input_cont">
-                    <input type="text" placeholder="Full name">
+                    <input type="text" placeholder="Full name" name="name" id="data">
                 </div>
 
                 <div class="input_cont">
-                    <input type="text" placeholder="Gender">
-                    <input type="text" placeholder="Age">
+                    <input type="text" placeholder="matric no" name="matric" id="data">
+                    <input type="text" placeholder="phone no" name="phone" id="data">
                 </div>
 
                 <div class="input_cont">
-                    <input type="text" placeholder="Blood Group">
-                    <input type="text" placeholder="Blood type">
+                    <input type="text" placeholder="Hall of residence" name="hall" id="data">
+
+                    <label for="image" class="flex-center" >
+                       <h4 id="img_label">upload id-card</h4> 
+                        <input type="file" hidden accept="image/*" id="image" name="image">
+
+                    </label>
+
+                    <input type="hidden" class="img_input" name="image_input" id="data">
+                   
                 </div>
 
               
                 <div class="input_cont">
-                    <input type="text" placeholder="Email">
+                    <input type="text" placeholder="Email" name="email" id="data">
                 </div>
 
                 <div class="input_cont">
-                    <input type="password" placeholder="password">
-                    <input type="password" placeholder="confirm password">
+                    <input type="password" placeholder="password" name="password" id="data">
+                    <input type="password" placeholder="confirm password" name="confirm" id="data">
                 </div>
 
             
 
-                <button>sign up</button>
+                <button disabled id="submit">sign up</button>
 
                 <a href="auth.html">I already have an account</a>
 
@@ -70,4 +78,5 @@
     </div>
 </body>
 <script src="js/notify.js"></script>
+<script src="js/register.js"></script>
 </html>

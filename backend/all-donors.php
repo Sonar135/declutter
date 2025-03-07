@@ -16,7 +16,7 @@
     
     $data=[];
 
-        $get=mysqli_query($conn, "SELECT * from users where is_donor!='yes'");
+        $get=mysqli_query($conn, "SELECT * from users where is_donor='yes'");
 
         if(mysqli_num_rows($get)<1){
             echo json_encode([
@@ -29,8 +29,8 @@
             $data[]=[
                 "name" => $row["name"],
                 "matric" => $row["matric"],
-                "id" => $row["id"],
                 "phone" => $row["phone"],
+                "id" => $row["id"],
                
             ];
         }
