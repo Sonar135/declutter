@@ -85,12 +85,12 @@
     text-align: center;
 }
 
-.input_cont:nth-child(1) input , .input_cont:nth-child(4) input{
+.input_cont:nth-child(1) input {
     width:100%;
    
 }
 
-.input_cont:nth-child(2) input, .input_cont:nth-child(3) input, .input_cont:nth-child(5) input{
+.input_cont:nth-child(2) input, .input_cont:nth-child(3) input, .input_cont:nth-child(5) input , .input_cont:nth-child(4) input{
     width:300px;
 }
 
@@ -162,4 +162,14 @@
 
 .hero{
     padding-bottom:1px;
+}
+
+
+#submit{
+    display:none;
+}
+
+.code{
+    display:none;
+    justify-content: center;
 }

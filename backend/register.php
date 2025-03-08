@@ -14,17 +14,29 @@
         $hall=$_POST['hall'];
         $password=$_POST['password'];
         $confirm=$_POST['confirm'];
-        $img_input=$_POST['img_input'];
+        // $img_input=$_POST['img_input'];
         $confirm=$_POST['confirm'];
-        $temp_img=$_FILES['image']['tmp_name'];
+        $code=$_POST['code'];
+        // $temp_img=$_FILES['image']['tmp_name'];
 
 
 
      
-        create_user($conn, $email, $fname,  $password, $phone, $hall, $matric, $img_input, $temp_img );
+
 
     
 
+
+
+        $check_code=mysqli_query($conn, "SELECT * from verify where email='$email' and code='$code' order by id desc limit 1");
+
+
+        if(mysqli_num_rows($check_code)<1){
+            echo json_encode([
+                "status"=>"invalid_code"
+            ]);
+        exit();
+        }
   
 
         if(invalid_email($email)!== false){
@@ -71,7 +83,7 @@
      
     
         
-
+        create_user($conn, $email, $fname,  $password, $phone, $hall, $matric );
 ?>
 
 

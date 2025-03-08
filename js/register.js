@@ -19,17 +19,17 @@ data.forEach((datum, i)=> {
 });
 
 
-fileInput.addEventListener("change", ()=>{
-    const file = fileInput.files[0]; // Get the first file
+// fileInput.addEventListener("change", ()=>{
+//     const file = fileInput.files[0]; // Get the first file
 
-    img_label.textContent = `${file.name}`;
-    document.querySelector(".img_input").value=`${file.name}`
+//     img_label.textContent = `${file.name}`;
+//     document.querySelector(".img_input").value=`${file.name}`
 
-    const event = new Event("input", { bubbles: true });
-    document.querySelector(".img_input").dispatchEvent(event);
-        // sale_submit.disabled=false;
+//     const event = new Event("input", { bubbles: true });
+//     document.querySelector(".img_input").dispatchEvent(event);
+//         // sale_submit.disabled=false;
  
-})
+// })
 
 
 
@@ -86,7 +86,45 @@ user_form.addEventListener("submit", (e)=>{
         }
 
 
+        else if(datas.status==="invalid_code"){
+            notify("invalid code")
+            data[7].value=""
+            sale_submit.disabled=true
+        }
+
         
     })
 
 })
+
+
+document.querySelector("#verify").addEventListener("click", (e)=>{
+    e.preventDefault()
+
+
+    const form_data= new FormData(user_form)
+
+
+    fetch("backend/verify_email.php", {
+        method: "POST",
+        body: form_data
+    })
+
+    .then(res=>res.json()).then(datas=>{
+        if(datas.status==="success"){
+            notify("email sent")
+
+       document.querySelector(".code").style.display="flex"
+       document.querySelector("#verify").style.display="none"
+       document.querySelector("#submit").style.display="flex"
+          
+        }
+
+
+
+
+        
+    })
+    
+})
+

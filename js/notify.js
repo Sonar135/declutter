@@ -2,14 +2,17 @@ const action = new Event("input", { bubbles: true });
 
 
 
-const notify=(text)=>{
-    let message=document.querySelector(".message")
-    message.textContent=text;
+let message_timer; 
 
-    message.style.display="flex";
+const notify = (text) => {
+    let message = document.querySelector(".message");
 
+    clearTimeout(message_timer); 
 
-    setTimeout(() => {
-        message.style.display="none";
-        }, 7000);
-}
+    message.textContent = text;
+    message.style.display = "flex";
+
+    message_timer = setTimeout(() => {
+        message.style.display = "none";
+    }, 7000);
+};

@@ -12,6 +12,9 @@
     $id= $_POST["id"];
 
 
+ 
+
+
 
 
     $query= mysqli_query($conn, "UPDATE users set is_approved='approved' where id='$id'");

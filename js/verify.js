@@ -235,8 +235,8 @@ fetch("../backend/get-pen-up.php", {
 
     else{
         data.forEach(datum=>{
-
-          document.querySelector("#render-up").innerHTML+=`
+            let content=""
+        content+=`
             <tr id="drow">
                                 <td>${datum.name}</td>
                                 <td>${datum.matric}
@@ -249,87 +249,98 @@ fetch("../backend/get-pen-up.php", {
                                 <td>${datum.phone}</td>
                                 <td>${datum.email}</td>
                               </tr>  `
+
+
+                              setTimeout(()=>{
+                                document.querySelector("#render-up").innerHTML=content
+
+
+                                let options = document.querySelectorAll(".don-options");
+                                let rows = document.querySelectorAll("#drow");
+                                
+                                
+                                
+                                document.addEventListener("click", (event) => {
+                                    if (![...rows, ...options].some(elem => elem.contains(event.target))) {
+                                        options.forEach(option => option.classList.remove("op_active"));
+                                        rows.forEach(row=>{
+                                            row.classList.remove("row-shadow");
+                                        })
+                                    }
+                                });
+                                
+                                
+                                rows.forEach((row, i) => {
+                                    row.addEventListener("click", (event) => {
+                                        event.stopPropagation(); // Prevents triggering document click
+                                
+                                        let isActive = options[i].classList.contains("op_active");
+                                
+                                        // Remove 'op_active' from all elements
+                                        options.forEach(option => option.classList.remove("op_active"));
+                                
+                                        rows.forEach(row=>{
+                                            row.classList.remove("row-shadow");
+                                        })
+                                      
+                                
+                                        // Toggle only if it wasn't active before
+                                        if (!isActive) {
+                                            options[i].classList.add("op_active");
+                                            row.classList.add("row-shadow");
+                                
+                                        }
+                                    });
+                                });
+
+
+                                document.querySelectorAll(".up-reject-id").forEach((manager,j) =>{
+                                    manager.addEventListener("click", ()=>{
+                                        document.querySelector(".screen_overlay").style.display="block"
+                                        document.querySelector(".up-reject").style.display="block"
+                                        document.querySelector("#up-name").textContent=`${data[j].name}`
+                                        document.querySelector(".up-id").value=`${data[j].id}`
+                                
+                                       
+                                    })
+                                })
+                            
+                            
+                                let accept_up_form= document.querySelectorAll("#accept-up");
+                            
+                            
+                            accept_up_form.forEach(form=>{
+                                form.addEventListener("submit", (e)=>{
+                                    e.preventDefault()
+                                
+                                    let form_data= new FormData(form)
+                                
+                                
+                                    fetch("../backend/accept-up.php", {
+                                        method: "POST",
+                                        body: form_data
+                                    }).then(res=>res.json()).then(data=>{
+                                        if(data.status==="success"){
+                                            notify("accepted. Sending email")
+                            
+                                            setTimeout(()=>{
+                                                location.reload()
+                                            },500)
+                                        }
+                                    })
+                                })
+                            })
+                            
+
+
+                              }, 500)
+
+
+                     
+                         
         })
     }
 
-
-
-    let options = document.querySelectorAll(".don-options");
-let rows = document.querySelectorAll("#drow");
-
-
-
-document.addEventListener("click", (event) => {
-    if (![...rows, ...options].some(elem => elem.contains(event.target))) {
-        options.forEach(option => option.classList.remove("op_active"));
-        rows.forEach(row=>{
-            row.classList.remove("row-shadow");
-        })
-    }
-});
-
-
-rows.forEach((row, i) => {
-    row.addEventListener("click", (event) => {
-        event.stopPropagation(); // Prevents triggering document click
-
-        let isActive = options[i].classList.contains("op_active");
-
-        // Remove 'op_active' from all elements
-        options.forEach(option => option.classList.remove("op_active"));
-
-        rows.forEach(row=>{
-            row.classList.remove("row-shadow");
-        })
-      
-
-        // Toggle only if it wasn't active before
-        if (!isActive) {
-            options[i].classList.add("op_active");
-            row.classList.add("row-shadow");
-
-        }
-    });
-});
-
-
-
-    document.querySelectorAll(".up-reject-id").forEach((manager,j) =>{
-        manager.addEventListener("click", ()=>{
-            document.querySelector(".screen_overlay").style.display="block"
-            document.querySelector(".up-reject").style.display="block"
-            document.querySelector("#up-name").textContent=`${data[j].name}`
-            document.querySelector(".up-id").value=`${data[j].id}`
-    
-           
-        })
-    })
-
-
-    let accept_up_form= document.querySelectorAll("#accept-up");
-
-
-accept_up_form.forEach(form=>{
-    form.addEventListener("submit", (e)=>{
-        e.preventDefault()
-    
-        let form_data= new FormData(form)
-    
-    
-        fetch("../backend/accept-up.php", {
-            method: "POST",
-            body: form_data
-        }).then(res=>res.json()).then(data=>{
-            if(data.status==="success"){
-                notify("accepted. Sending email")
-
-                setTimeout(()=>{
-                    location.reload()
-                },500)
-            }
-        })
-    })
-})
 
 
 })
@@ -475,7 +486,7 @@ fetch("../backend/get-pen-don.php", {
             
                 
 
-            }, 100)
+            }, 500)
                    
                    
                   

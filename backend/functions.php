@@ -3,11 +3,10 @@
 
 
     
-    function create_user($conn, $email, $fname, $password, $phone, $hall, $matric, $img_input, $temp_img){
+    function create_user($conn, $email, $fname, $password, $phone, $hall, $matric){
 
    
-        move_uploaded_file($temp_img, "../pictures/$img_input");
-        $insert= "INSERT INTO users (name,  email,  password, phone, hall, matric, photo, type) VALUES (?,?,?,?,?,?,?,?)";   
+        $insert= "INSERT INTO users (name,  email,  password, phone, hall, matric, type) VALUES (?,?,?,?,?,?,?)";   
         
       
         $type="user";
@@ -23,7 +22,7 @@
         
         $hashed_pwd=password_hash($password, PASSWORD_DEFAULT);
 
-        mysqli_stmt_bind_param($stmt2, 'ssssssss', $fname,   $email,  $hashed_pwd, $phone, $hall, $matric, $img_input, $type);
+        mysqli_stmt_bind_param($stmt2, 'sssssss', $fname,   $email,  $hashed_pwd, $phone, $hall, $matric, $type);
         mysqli_stmt_execute($stmt2);
         mysqli_stmt_close($stmt2);
         
@@ -164,8 +163,8 @@
 
         else if($checkedpwd===true){
 
-            $is_approved=mysqli_query($conn, "SELECT * FROM users WHERE matric='$matric' and is_approved='approved'");
-            if($is_approved_row=mysqli_fetch_assoc($is_approved)){
+
+
 
                 session_start();
 
@@ -185,13 +184,9 @@
                     'status' => 'success',
                     'redirect_url' => 'catalogue.html'
                 ]);
-            }
+            
 
 
-
-            else if(!$is_approved_row){
-                echo json_encode(['status' => 'unapproved']);
-              }
 
       
         }

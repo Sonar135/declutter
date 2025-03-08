@@ -1,47 +1,41 @@
-
-
-
-
 <?php
-    include "connect.php";
 
-    session_start();
+        include 'functions.php';
+        include 'connect.php';
 
-      
-    require_once __DIR__ . '/../phpmailer/src/Exception.php';
-    require_once __DIR__ . '/../phpmailer/src/PHPMailer.php';
-    require_once __DIR__ . '/../phpmailer/src/SMTP.php';
-    
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
+        $email=$_POST['email'];
 
+        $code=mt_rand(100000, 999999);
 
-    $id= $_POST["id"];
-    $reason= $_POST["reason"];
+        require_once __DIR__ . '/../phpmailer/src/Exception.php';
+        require_once __DIR__ . '/../phpmailer/src/PHPMailer.php';
+        require_once __DIR__ . '/../phpmailer/src/SMTP.php';
 
-
-    $get=mysqli_query($conn, "SELECT * from users where id='$id'");
-
-    $row=mysqli_fetch_assoc($get);
-
-    $email=$row["email"];
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 
 
+    $query= mysqli_query($conn, "INSERT into verify (email, code) values ('$email', $code) ");
 
-    $query= mysqli_query($conn, "UPDATE users set is_donor='' where id='$id'");
+
+
+    $emailSent = sendThankYouEmail($email, $code); 
 
     if($query){
-        if(sendThankYouEmail($email, $reason) ){
-            echo json_encode([
-                "status" => "success"
-            ]);
-        }
+        echo json_encode([
+            "status" => "success"
+        ]);
     }
- 
 
- 
-    function sendThankYouEmail($toEmail,  $reason) { // Add username parameter
+
+
+
+
+
+
+
+    function sendThankYouEmail($toEmail, $v_code) { // Add username parameter
         try {
             $mail = new PHPMailer(true);
             
@@ -60,7 +54,7 @@
     
             // Content
             $mail->isHTML(true);
-            $mail->Subject = 'Upgraade Decline';
+            $mail->Subject = 'your verification code';
             
             // Email body content with personalized username
             $mail->Body = '
@@ -79,12 +73,6 @@
                         border-radius: 5px;
                         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
                     }
-    
-    
-                        .container span{
-                        font-weight:900;
-                    }
-    
                     h1 {
                         color: #333333;
                     }
@@ -100,12 +88,13 @@
             </head>
             <body>
                 <div class="container">
-                    <h1>Apologies</h1>
-                    <p>Your account upgrade request has been declined </p>
-                    <p> <span class=""> Reason: </span> ' . htmlspecialchars($reason) . '</p>
+                    <h1>Your Code...</h1>
+                    <p>Your code is ' . htmlspecialchars($v_code) . ',</p>
+                    <p>Please do not share this code to anyone</p>
                 </div>
                 <div class="footer">
                     <p>This email was sent to ' . htmlspecialchars($toEmail) . '.</p>
+                    <p>If you did not register, please ignore this email.</p>
                 </div>
             </body>
             </html>';
@@ -120,6 +109,10 @@
         }
     }
     
+
+
+  
+
+  
     
-   
 ?>

@@ -138,15 +138,15 @@ fetch("backend/donate-history.php", {
         let content=""
         data.forEach(datum=>{
             let delivery_date= datum.delivery_date===""?"not delivered":datum.delivery_date
-            let drow=datum.recipient==""?"drow":""
+       
            content+=`
-                            <tr id= ${drow}>
+                            <tr id= "drow">
                                 <td><div class="exp_img"><img src="pictures/${datum.photo}" alt=""></div></td>
                                 <td>${datum.name}</td>
                                 <td>${datum.recipient}</td>
                                 <td>${datum.claim_date}
-                                  <div class="don-options">
-                                    <button class="flex-center don-id">Edit</button>
+                                <div class="don-options">
+                                <button class="flex-center don-id">Edit</button>
                                     <button class="flex-center delete_id">Delete</button>
                                   </div>
                                 </td>

@@ -177,11 +177,19 @@ claim_form.addEventListener("submit", (e)=>{
     }).then(res=>res.json()).then(data=>{
         if(data.status==="success"){
             notify("Claimed. Awaiting drop off")
+
+            setTimeout(()=>{
+                location.reload()
+            },500)
         }
 
-        setTimeout(()=>{
-            location.reload()
-        },500)
+
+        if(data.status==="not_approved"){
+            notify("your account awaits approval")
+
+        }
+
+       
     })
 })
 
