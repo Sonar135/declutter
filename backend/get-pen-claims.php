@@ -12,7 +12,8 @@
     
     $data=[];
 
-        $get=mysqli_query($conn, "SELECT * from items where claim_status!='complete'");
+    $get = mysqli_query($conn, "SELECT * FROM items WHERE recipient != '' AND claim_status NOT IN ('completed', 'disputed')");
+
 
         if(mysqli_num_rows($get)<1){
             echo json_encode([

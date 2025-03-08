@@ -25,7 +25,7 @@
     
     if (!empty($_GET['search'])) {
         $search = mysqli_real_escape_string($conn, $_GET['search']);
-        $filters[] = "name like '%$search%' or keywords like '%$search%'";
+        $filters[] = "(name like '%$search%' or keywords like '%$search%')";
     }
 
 
@@ -39,7 +39,7 @@
     
     $data=[];
 
-    $get = mysqli_query($conn, "SELECT * FROM items WHERE donation_status='approved' AND (claim_status='' OR claim_status='disputed') $where");
+    $get = mysqli_query($conn, "SELECT * FROM items WHERE donation_status='approved' AND donor_email!='$email' and (claim_status='' OR claim_status='disputed') $where");
 
 
         if(mysqli_num_rows($get)<1){

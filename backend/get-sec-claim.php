@@ -16,7 +16,7 @@
     
     $data=[];
 
-        $get=mysqli_query($conn, "SELECT * from items where recipient_email='$email' and claim_status='complete'");
+        $get=mysqli_query($conn, "SELECT * from items where recipient_email='$email' and claim_status='completed'");
 
         $num= mysqli_num_rows($get);
          

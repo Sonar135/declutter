@@ -15,7 +15,7 @@
 
 
 
-    $query= mysqli_query($conn, "UPDATE items set claim_status='completed' where id='$id'");
+    $query= mysqli_query($conn, "UPDATE items set claim_status='completed', delivery_date=CURDATE() where id='$id'");
 
     if($query){
         echo json_encode([

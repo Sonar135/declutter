@@ -11,7 +11,7 @@
     
     $data=[];
 
-        $get=mysqli_query($conn, "SELECT * from items where claim_status='complete'");
+        $get=mysqli_query($conn, "SELECT * from items where claim_status='completed'");
 
         if(mysqli_num_rows($get)<1){
             echo json_encode([
@@ -26,7 +26,7 @@
             $data[]=[
                 "id" => $row["id"],
                 "name" => $row["name"],
-                "recipeint" => $row["recipient"],
+                "recipient" => $row["recipient"],
                 "donor" => $row["donor"],
                 "photo" => $row["photo"],
                 "delivery_date" => $row["delivery_date"],

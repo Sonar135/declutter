@@ -147,6 +147,7 @@ document.querySelectorAll(".claim_id").forEach((manager,j) =>{
                 document.querySelector(".screen_overlay").style.display="block"
                 document.querySelector(".action").style.display="block"
                 document.querySelector("#id").value=data[j].id
+                document.querySelector("#name").textContent=data[j].name
                 
                 
                 })
@@ -177,6 +178,10 @@ claim_form.addEventListener("submit", (e)=>{
         if(data.status==="success"){
             notify("Claimed. Awaiting drop off")
         }
+
+        setTimeout(()=>{
+            location.reload()
+        },500)
     })
 })
 

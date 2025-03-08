@@ -21,7 +21,7 @@ fetch("../backend/all-users.php", {
                 </div>
 
                 <h4>${datum.name}</h4>
-                <h4>${datum.phone}</h4>
+                <h4>${datum.matric}</h4>
             </div>
  `
         })

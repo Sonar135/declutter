@@ -58,16 +58,7 @@ document.querySelectorAll(".edit_id").forEach((manager,j) =>{
 })
 
 
-document.querySelectorAll(".don-id").forEach((manager,j) =>{
-    manager.addEventListener("click", ()=>{
-        document.querySelector(".screen_overlay").style.display="block"
-        document.querySelector(".don-form").style.display="block"
-        document.querySelector(".name").value=`${data[j].name}`
-        document.querySelector(".id").value=`${data[j].id}`
-        document.querySelector(".name").dispatchEvent(action);
-       
-    })
-})
+
 
 document.querySelectorAll(".close").forEach(close=>{
     close.addEventListener("click", ()=>{
@@ -81,55 +72,7 @@ document.querySelectorAll(".close").forEach(close=>{
 
 
 
-    let options = document.querySelectorAll(".don-options");
-    let rows = document.querySelectorAll("#drow");
-    
-    rows.forEach((row, i) => {
-        row.addEventListener("click", (event) => {
-            event.stopPropagation(); // Prevents triggering document click
-    
-            let isActive = options[i].classList.contains("op_active");
-    
-            // Remove 'op_active' from all elements
-            options.forEach(option => option.classList.remove("op_active"));
-
-            rows.forEach(row=>{
-                row.classList.remove("row-shadow");
-            })
-          
-    
-            // Toggle only if it wasn't active before
-            if (!isActive) {
-                options[i].classList.add("op_active");
-                row.classList.add("row-shadow");
-
-            }
-        });
-    });
-    
-    // Click outside event listener
-    document.addEventListener("click", (event) => {
-        if (![...rows, ...options].some(elem => elem.contains(event.target))) {
-            options.forEach(option => option.classList.remove("op_active"));
-            rows.forEach(row=>{
-                row.classList.remove("row-shadow");
-            })
-        }
-    });
-    
-    
-    document.querySelectorAll(".delete_id").forEach((manager,j) =>{
-        manager.addEventListener("click", ()=>{
-        document.querySelector(".screen_overlay").style.display="block"
-        document.querySelector(".action").style.display="block"
-        document.querySelector("#name").innerHTML=`${data[j].name}`
-        document.querySelector("#id").value=data[j].id
-        
-        
-        
-        })
-        })
-
+  
 
         
 document.querySelector("#no").addEventListener("click", ()=>{
@@ -166,7 +109,7 @@ fetch("backend/claim-history.php", {
         data.forEach(datum=>{
 
             let delivery_date= datum.delivery_date===""?"not delivered":datum.delivery_date
-            document.querySelector(".claims").innerHTML+=`
+            document.querySelector("#claims").innerHTML+=`
                <tr>
                                 <td><div class="exp_img"><img src="pictures/${datum.photo}" alt=""></div></td>
                                 <td>${datum.name}</td>
@@ -174,6 +117,8 @@ fetch("backend/claim-history.php", {
                                 <td>${datum.claim_date}</td>
                                 <td>${delivery_date}</td>
                               </tr> `
+
+                             
         })
     }
 
@@ -190,10 +135,12 @@ fetch("backend/donate-history.php", {
     }
 
     else{
+        let content=""
         data.forEach(datum=>{
             let delivery_date= datum.delivery_date===""?"not delivered":datum.delivery_date
-            document.querySelector("#donated").innerHTML+=`
-                            <tr id="drow">
+            let drow=datum.recipient==""?"drow":""
+           content+=`
+                            <tr id= ${drow}>
                                 <td><div class="exp_img"><img src="pictures/${datum.photo}" alt=""></div></td>
                                 <td>${datum.name}</td>
                                 <td>${datum.recipient}</td>
@@ -210,36 +157,151 @@ fetch("backend/donate-history.php", {
 
 
                     document.querySelector("#total-don").textContent=`donated: ${datum.num}`
+
+
+                    setTimeout(()=>{
+                        document.querySelector("#donated").innerHTML=content
+
+
+                        let options = document.querySelectorAll(".don-options");
+                        let rows = document.querySelectorAll("#drow");
+                        
+                        rows.forEach((row, i) => {
+                            row.addEventListener("click", (event) => {
+                                event.stopPropagation(); // Prevents triggering document click
+                        
+                                let isActive = options[i].classList.contains("op_active");
+                        
+                                // Remove 'op_active' from all elements
+                                options.forEach(option => option.classList.remove("op_active"));
+                    
+                                rows.forEach(row=>{
+                                    row.classList.remove("row-shadow");
+                                })
+                              
+                        
+                                // Toggle only if it wasn't active before
+                                if (!isActive) {
+                                    options[i].classList.add("op_active");
+                                    row.classList.add("row-shadow");
+                    
+                                }
+                            });
+                        });
+                        
+                        // Click outside event listener
+                        document.addEventListener("click", (event) => {
+                            if (![...rows, ...options].some(elem => elem.contains(event.target))) {
+                                options.forEach(option => option.classList.remove("op_active"));
+                                rows.forEach(row=>{
+                                    row.classList.remove("row-shadow");
+                                })
+                            }
+                        });
+                        
+                        
+                        document.querySelectorAll(".delete_id").forEach((manager,j) =>{
+                            manager.addEventListener("click", ()=>{
+                            document.querySelector(".screen_overlay").style.display="block"
+                            document.querySelector(".action").style.display="block"
+                            document.querySelector("#name").innerHTML=`${data[j].name}`
+                            document.querySelector("#id").value=data[j].id
+                            
+                            
+                            
+                            })
+                            })
+
+
+                            document.querySelectorAll(".don-id").forEach((manager,j) =>{
+                                manager.addEventListener("click", ()=>{
+                                    document.querySelector(".screen_overlay").style.display="block"
+                                    document.querySelector(".don-form").style.display="block"
+                                    document.querySelector(".don-name").value=`${data[j].name}`
+                                    document.querySelector(".don_id").value=`${data[j].id}`
+                                    document.querySelector(".name").dispatchEvent(action);
+                                    document.querySelector("#don-name").textContent=`${data[j].name}`
+                                    document.querySelector("#img_label").textContent=`${data[j].photo}`
+                                    document.querySelector(".img_input").value=`${data[j].photo}`
+
+                                   
+                                })
+                            })
+
+
+                            let delete_form= document.querySelectorAll("#delete_form");
+
+
+
+
+
+delete_form.forEach(form=>{
+    form.addEventListener("submit", (e)=>{
+        e.preventDefault()
+    
+        let form_data= new FormData(form)
+    
+    
+        fetch("backend/delete-item.php", {
+            method: "POST",
+            body: form_data
+        }).then(res=>res.json()).then(data=>{
+            if(data.status==="success"){
+                notify("item deleted")
+
+
+                setTimeout(()=>{
+                    location.reload()
+                },500)
+            }
+        })
+    })
+})
+
+
+
+
+
+
+
+
+
+
+let don_form= document.querySelector("#edit-don-form");
+
+don_form.addEventListener("submit", (e)=>{
+    e.preventDefault()
+
+    let form_data= new FormData(don_form)
+
+
+    fetch("backend/update-item.php", {
+        method: "POST",
+        body: form_data
+    }).then(res=>res.json()).then(data=>{
+        if(data.status==="success"){
+            notify("item updated")
+
+
+            setTimeout(()=>{
+                location.reload()
+            },500)
+
+          
+        }
+    })
+})
+
+                    
+                    },199)
         })
     }
 
 
-    document.querySelectorAll(".don-id").forEach((manager,j) =>{
-        manager.addEventListener("click", ()=>{
-            document.querySelector(".screen_overlay").style.display="block"
-            document.querySelector(".don-form").style.display="block"
-            document.querySelector(".name").value=`${data[j].name}`
-            document.querySelector(".id").value=`${data[j].id}`
-            document.querySelector(".img").value=`${data[j].photo}`
-            document.querySelector("#img_label").textContent=`${data[j].photo}`
-            document.querySelector(".name").dispatchEvent(action);
-           
-        })
-    })
 
 
 
-    document.querySelectorAll(".delete_id").forEach((manager,j) =>{
-        manager.addEventListener("click", ()=>{
-        document.querySelector(".screen_overlay").style.display="block"
-        document.querySelector(".action").style.display="block"
-        document.querySelector("#name").innerHTML=`${data[j].name}`
-        document.querySelector("#id").value=data[j].id
-        
-        
-        
-        })
-        })
+
 
     
 
@@ -315,7 +377,7 @@ fetch("backend/get-sec-claim.php", {
     }
 
     else{
-        document.querySelector("#total-clmd").textContent=`donated: ${data.num}`
+        document.querySelector("#total-clmd").textContent=`successfully claimed: ${data.num}`
     }
 
 
@@ -349,68 +411,6 @@ edit_form.addEventListener("submit", (e)=>{
 })
 
 
-let delete_form= document.querySelectorAll("#delete_form");
-
-
-
-
-
-delete_form.forEach(form=>{
-    form.addEventListener("submit", (e)=>{
-        e.preventDefault()
-    
-        let form_data= new FormData(form)
-    
-    
-        fetch("backend/delete-item.php", {
-            method: "POST",
-            body: form_data
-        }).then(res=>res.json()).then(data=>{
-            if(data.status==="success"){
-                notify("item deleted")
-
-
-                setTimeout(()=>{
-                    location.reload()
-                },500)
-            }
-        })
-    })
-})
-
-
-
-
-
-
-
-
-
-
-let don_form= document.querySelector("#edit-don-form");
-
-don_form.addEventListener("submit", (e)=>{
-    e.preventDefault()
-
-    let form_data= new FormData(don_form)
-
-
-    fetch("backend/update-item.php", {
-        method: "POST",
-        body: form_data
-    }).then(res=>res.json()).then(data=>{
-        if(data.status==="success"){
-            notify("item updated")
-
-
-            setTimeout(()=>{
-                location.reload()
-            },500)
-
-          
-        }
-    })
-})
 
 
 let upgrade= document.querySelector("#upgrade");
