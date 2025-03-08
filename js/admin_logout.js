@@ -1,7 +1,7 @@
 
 
 
-fetch("backend/admin_session.php", {
+fetch("../backend/admin_session.php", {
     method:"GET"
 })
 

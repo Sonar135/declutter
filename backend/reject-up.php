@@ -16,7 +16,7 @@
 
 
 
-    $query= mysqli_query($conn, "UPDATE users set is_donor='no' where id='$id'");
+    $query= mysqli_query($conn, "UPDATE users set is_donor='' where id='$id'");
 
     if($query){
         echo json_encode([

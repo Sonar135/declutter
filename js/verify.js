@@ -1,5 +1,6 @@
 
-
+let options
+let rows
 
 let reg_data=document.querySelectorAll("#reg-data");
 let reg_btn=document.querySelector(".reg-btn")
@@ -70,9 +71,11 @@ fetch("../backend/get-pen-reg.php", {
     }
 
     else{
+
+        let content=""
         data.forEach(datum=>{
 
-          document.querySelector("#render-reg").innerHTML+=`
+         content+=`
             <tr id="drow">
                                 <td>${datum.name}</td>
                                 <td>${datum.matric}
@@ -87,12 +90,13 @@ fetch("../backend/get-pen-reg.php", {
                                 <td>${datum.matric}</td>
                                 <td>${datum.email}</td>
                               </tr> `
-        })
-    }
 
 
-    
-let options = document.querySelectorAll(".don-options");
+                              setTimeout(()=>{
+                                document.querySelector("#render-reg").innerHTML=content
+
+
+                                let options = document.querySelectorAll(".don-options");
 let rows = document.querySelectorAll("#drow");
 
 
@@ -179,6 +183,13 @@ accept_reg_form.forEach(form=>{
         })
     })
 })
+                              }, 100)
+        })
+    }
+
+
+    
+
     
 
 
@@ -225,7 +236,7 @@ fetch("../backend/get-pen-up.php", {
     else{
         data.forEach(datum=>{
 
-          document.querySelector(".render-up").innerHTML+=`
+          document.querySelector("#render-up").innerHTML+=`
             <tr id="drow">
                                 <td>${datum.name}</td>
                                 <td>${datum.matric}
@@ -362,9 +373,11 @@ fetch("../backend/get-pen-don.php", {
     }
 
     else{
+
+        let content="";
         data.forEach(datum=>{
 
-          document.querySelector(".render-don").innerHTML+=`
+          content+=`
            <tr id="drow">
                                 <td><div class="exp_img"><img src="../pictures/${datum.photo}" alt=""></div></td>
                                  <td>${datum.name}
@@ -379,89 +392,111 @@ fetch("../backend/get-pen-don.php", {
                                  <td>${datum.donor}</td>
                                </tr> 
   `
+
+
+            setTimeout(()=>{
+                document.querySelector("#render-don").innerHTML=content
+                let options = document.querySelectorAll(".don-options");
+                let rows = document.querySelectorAll("#drow");
+                
+                
+                
+                document.addEventListener("click", (event) => {
+                    if (![...rows, ...options].some(elem => elem.contains(event.target))) {
+                        options.forEach(option => option.classList.remove("op_active"));
+                        rows.forEach(row=>{
+                            row.classList.remove("row-shadow");
+                        })
+                    }
+                });
+                
+                
+                rows.forEach((row, i) => {
+                    row.addEventListener("click", (event) => {
+                        event.stopPropagation(); // Prevents triggering document click
+                
+                        let isActive = options[i].classList.contains("op_active");
+                
+                        // Remove 'op_active' from all elements
+                        options.forEach(option => option.classList.remove("op_active"));
+                
+                        rows.forEach(row=>{
+                            row.classList.remove("row-shadow");
+                        })
+                      
+                
+                        // Toggle only if it wasn't active before
+                        if (!isActive) {
+                            options[i].classList.add("op_active");
+                            row.classList.add("row-shadow");
+                
+                        }
+                    });
+                });
+
+
+                document.querySelectorAll(".don-reject-id").forEach((manager,j) =>{
+                    manager.addEventListener("click", ()=>{
+                        document.querySelector(".screen_overlay").style.display="block"
+                        document.querySelector(".don-reject").style.display="block"
+                        document.querySelector("#don-name").textContent=`${data[j].donor}`
+                        document.querySelector(".don-id").value=`${data[j].id}`
+                
+                       
+                    })
+                })
+            
+            
+            
+                let accept_don_form= document.querySelectorAll("#accept-don");
+            
+            
+            accept_don_form.forEach(form=>{
+                form.addEventListener("submit", (e)=>{
+                    e.preventDefault()
+                
+                    let form_data= new FormData(form)
+                
+                
+                    fetch("../backend/accept-don.php", {
+                        method: "POST",
+                        body: form_data
+                    }).then(res=>res.json()).then(data=>{
+                        if(data.status==="success"){
+                            notify("accepted. Sending email")
+            
+                            setTimeout(()=>{
+                                location.reload()
+                            },500)
+                        }
+                    })
+                })
+            })
+            
+                
+
+            }, 100)
+                   
+                   
+                  
+
+
+
+
+  
         })
+   
     }
 
 
-    let options = document.querySelectorAll(".don-options");
-    let rows = document.querySelectorAll("#drow");
-    
-    
-    
-    document.addEventListener("click", (event) => {
-        if (![...rows, ...options].some(elem => elem.contains(event.target))) {
-            options.forEach(option => option.classList.remove("op_active"));
-            rows.forEach(row=>{
-                row.classList.remove("row-shadow");
-            })
-        }
-    });
-    
-    
-    rows.forEach((row, i) => {
-        row.addEventListener("click", (event) => {
-            event.stopPropagation(); // Prevents triggering document click
-    
-            let isActive = options[i].classList.contains("op_active");
-    
-            // Remove 'op_active' from all elements
-            options.forEach(option => option.classList.remove("op_active"));
-    
-            rows.forEach(row=>{
-                row.classList.remove("row-shadow");
-            })
-          
-    
-            // Toggle only if it wasn't active before
-            if (!isActive) {
-                options[i].classList.add("op_active");
-                row.classList.add("row-shadow");
-    
-            }
-        });
-    });
-    
+   
 
-
-    document.querySelectorAll(".don-reject-id").forEach((manager,j) =>{
-        manager.addEventListener("click", ()=>{
-            document.querySelector(".screen_overlay").style.display="block"
-            document.querySelector(".don-reject").style.display="block"
-            document.querySelector("#don-name").textContent=`${data[j].donor}`
-            document.querySelector(".don-id").value=`${data[j].id}`
-    
-           
-        })
-    })
+      
+   
 
 
 
-    let accept_don_form= document.querySelectorAll("#accept-don");
 
-
-accept_don_form.forEach(form=>{
-    form.addEventListener("submit", (e)=>{
-        e.preventDefault()
-    
-        let form_data= new FormData(form)
-    
-    
-        fetch("../backend/accept-don.php", {
-            method: "POST",
-            body: form_data
-        }).then(res=>res.json()).then(data=>{
-            if(data.status==="success"){
-                notify("accepted. Sending email")
-
-                setTimeout(()=>{
-                    location.reload()
-                },500)
-            }
-        })
-    })
-})
-
-    
 
 
 })
@@ -477,7 +512,7 @@ let reject_don_form= document.querySelector("#reject-don-form");
 reject_don_form.addEventListener("submit", (e)=>{
     e.preventDefault()
 
-    let form_data= new FormData(reject_up_form)
+    let form_data= new FormData(reject_don_form)
 
 
     fetch("../backend/reject-don.php", {

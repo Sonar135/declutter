@@ -20,7 +20,7 @@
 
 
 
-    $query= mysqli_query($conn, "UPDATE users set name='$name', hall='$hall',  phone='$phone'");
+    $query= mysqli_query($conn, "UPDATE users set name='$name', hall='$hall',  phone='$phone' where email='$email' and type='user'");
 
     if($query){
         echo json_encode([

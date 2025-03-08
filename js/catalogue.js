@@ -91,7 +91,7 @@ document.querySelectorAll(".claim_id").forEach((manager,j) =>{
 
     function fetchInventory(filters = {}) {
 
-
+        document.querySelector(".render").innerHTML=""
         // item_cont.innerHTML = "";
     
         const queryParams = new URLSearchParams(filters).toString();

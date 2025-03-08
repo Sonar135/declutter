@@ -259,7 +259,7 @@ fetch("backend/profile.php", {
     else{
         data.forEach(datum=>{
 
-        document.querySelector(".box_1").innerHTML+=` 
+        document.querySelector(".box_1").innerHTML=` 
            <h4>Name:${datum.name}</h4>
                 <h4>Matric no: ${datum.matric}</h4>
                 <h4>Phone: ${datum.phone}</h4>
@@ -448,7 +448,7 @@ fetch("backend/user_session.php", {
 })
 
 .then(res=>res.json()).then(session_data=>{
-    if(session_data.isDonor=="no"){
+    if(session_data.isDonor!=="yes"){
   
 
         document.querySelector(".sec3").style.display="none"
