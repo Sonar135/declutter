@@ -7,12 +7,7 @@
 
     session_start();
 
-    if(isset($_SESSION["id"])){
-        $email=$_SESSION["email"];
-        $user=$_SESSION["name"];
-        $phone=$_SESSION["phone"];
-    }
-
+ 
     
     $data=[];
 
@@ -22,6 +17,7 @@
             echo json_encode([
                 "status" => "empty"
             ]);
+            exit();
         }
 
 

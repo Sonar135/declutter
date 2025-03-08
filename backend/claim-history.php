@@ -22,6 +22,8 @@
             echo json_encode([
                 "status" => "empty"
             ]);
+
+            exit();
         }
 
 

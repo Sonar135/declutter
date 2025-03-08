@@ -31,7 +31,7 @@ login.addEventListener("submit", (e)=>{
 
 
     
-    fetch("backend/admin_login.php", {
+    fetch("../backend/admin_login.php", {
         method: "POST",
         body:form_data
     })
@@ -44,7 +44,6 @@ login.addEventListener("submit", (e)=>{
 
 
         else{
-            data[1].value=""
             notify("invalid admin login");
         }
     })

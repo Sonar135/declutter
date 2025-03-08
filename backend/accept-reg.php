@@ -7,11 +7,6 @@
 
     session_start();
 
-    if(isset($_SESSION["id"])){
-        $email=$_SESSION["email"];
-        $user=$_SESSION["name"];
-        $phone=$_SESSION["phone"];
-    }
 
 
     $id= $_POST["id"];
@@ -19,7 +14,7 @@
 
 
 
-    $query= mysqli_query($conn, "UPDATE users set is_approved='yes' where id='$id'");
+    $query= mysqli_query($conn, "UPDATE users set is_approved='approved' where id='$id'");
 
     if($query){
         echo json_encode([

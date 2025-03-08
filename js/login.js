@@ -32,7 +32,7 @@ login.addEventListener("submit", (e)=>{
 
 
     
-    fetch("backend/user_login.php", {
+    fetch("backend/login.php", {
         method: "POST",
         body:form_data
     })
@@ -48,7 +48,6 @@ login.addEventListener("submit", (e)=>{
            }
 
         else{
-            data[1].value=""
             notify("user does not exist");
         }
     })

@@ -52,7 +52,7 @@ user_form.addEventListener("submit", (e)=>{
             notify("account created")
 
             setTimeout(()=>{
-                window.location.href="login.html" 
+                window.location.href="auth.html" 
             }, 500)
           
         }

@@ -1,6 +1,5 @@
 
-let options = document.querySelectorAll(".don-options");
-let rows = document.querySelectorAll("#drow");
+
 
 let reg_data=document.querySelectorAll("#reg-data");
 let reg_btn=document.querySelector(".reg-btn")
@@ -35,6 +34,79 @@ enable_button(up_data, up_btn)
 enable_button(don_data, don_btn)
 
 
+
+
+
+
+
+
+
+
+
+
+
+document.querySelectorAll(".close").forEach(close=>{
+    close.addEventListener("click", ()=>{
+        document.querySelector(".screen_overlay").style.display="none"
+        document.querySelector(".reg-reject").style.display="none"
+        document.querySelector(".up-reject").style.display="none"
+        document.querySelector(".don-reject").style.display="none"
+        document.querySelector(".id-card").style.display="none"
+
+    })
+})
+
+
+
+
+
+
+
+fetch("../backend/get-pen-reg.php", {
+    method:"GET",
+}).then(res=>res.json()).then(data=>{
+    if(data.status==="empty"){
+
+    }
+
+    else{
+        data.forEach(datum=>{
+
+          document.querySelector("#render-reg").innerHTML+=`
+            <tr id="drow">
+                                <td>${datum.name}</td>
+                                <td>${datum.matric}
+
+                                  <div class="don-options">
+                                    <button class="flex-center reg-reject-id">Reject</button>
+                                    <button class="flex-center view-id">view id</button>
+                                  <form action="" id="accept-reg"> <input type="hidden" id="accept-reg-id" name="id" value='${datum.id}'> <button class="flex-center reg-approve-id">Approve</button></form> 
+                                  </div>
+                                </td>
+                        
+                                <td>${datum.matric}</td>
+                                <td>${datum.email}</td>
+                              </tr> `
+        })
+    }
+
+
+    
+let options = document.querySelectorAll(".don-options");
+let rows = document.querySelectorAll("#drow");
+
+
+
+document.addEventListener("click", (event) => {
+    if (![...rows, ...options].some(elem => elem.contains(event.target))) {
+        options.forEach(option => option.classList.remove("op_active"));
+        rows.forEach(row=>{
+            row.classList.remove("row-shadow");
+        })
+    }
+});
+
+
 rows.forEach((row, i) => {
     row.addEventListener("click", (event) => {
         event.stopPropagation(); // Prevents triggering document click
@@ -58,98 +130,6 @@ rows.forEach((row, i) => {
     });
 });
 
-document.querySelectorAll(".reg-reject-id").forEach((manager,j) =>{
-    manager.addEventListener("click", ()=>{
-        document.querySelector(".screen_overlay").style.display="block"
-        document.querySelector(".reg-reject").style.display="block"
-
-       
-    })
-})
-
-
-document.querySelectorAll(".view-id").forEach((manager,j) =>{
-    manager.addEventListener("click", ()=>{
-        document.querySelector(".screen_overlay").style.display="block"
-        document.querySelector(".id-card").style.display="block"
-
-       
-    })
-})
-
-
-document.querySelectorAll(".up-reject-id").forEach((manager,j) =>{
-    manager.addEventListener("click", ()=>{
-        document.querySelector(".screen_overlay").style.display="block"
-        document.querySelector(".up-reject").style.display="block"
-
-       
-    })
-})
-
-
-document.querySelectorAll(".don-reject-id").forEach((manager,j) =>{
-    manager.addEventListener("click", ()=>{
-        document.querySelector(".screen_overlay").style.display="block"
-        document.querySelector(".don-reject").style.display="block"
-
-       
-    })
-})
-
-
-document.querySelectorAll(".close").forEach(close=>{
-    close.addEventListener("click", ()=>{
-        document.querySelector(".screen_overlay").style.display="none"
-        document.querySelector(".reg-reject").style.display="none"
-        document.querySelector(".up-reject").style.display="none"
-        document.querySelector(".don-reject").style.display="none"
-        document.querySelector(".id-card").style.display="none"
-
-    })
-})
-
-
-document.addEventListener("click", (event) => {
-    if (![...rows, ...options].some(elem => elem.contains(event.target))) {
-        options.forEach(option => option.classList.remove("op_active"));
-        rows.forEach(row=>{
-            row.classList.remove("row-shadow");
-        })
-    }
-});
-
-
-
-
-fetch("backend/get-pen-reg.php", {
-    method:"GET",
-}).then(res=>res.json()).then(data=>{
-    if(data.status==="empty"){
-
-    }
-
-    else{
-        data.forEach(datum=>{
-
-          document.querySelector(".render-reg").innerHTML+=`
-            <tr id="drow">
-                                <td>${datum.name}</td>
-                                <td>${datum.matric}
-
-                                  <div class="don-options">
-                                    <button class="flex-center reg-reject-id">Reject</button>
-                                    <button class="flex-center view-id">view id</button>
-                                  <form action="" id="accept-reg"> <input type="hidden" id="accept-reg-id" name="id" value='${datum.id}'> <button class="flex-center reg-approve-id">Approve</button></form> 
-                                  </div>
-                                </td>
-                        
-                                <td>${datum.matric}</td>
-                                <td>${datum.email}</td>
-                              </tr> `
-        })
-    }
-
 
     document.querySelectorAll(".reg-reject-id").forEach((manager,j) =>{
         manager.addEventListener("click", ()=>{
@@ -168,10 +148,37 @@ fetch("backend/get-pen-reg.php", {
         manager.addEventListener("click", ()=>{
             document.querySelector(".screen_overlay").style.display="block"
             document.querySelector(".id-card").style.display="block"
-            document.getElementById("id-image").src =`${data[j].photo}`;
+            document.querySelector("#id_name").textContent=`${data[j].name}`
+            document.getElementById("id-image").src =`../pictures/${data[j].photo}`;
            
         })
     })
+
+
+    let accept_reg_form= document.querySelectorAll("#accept-reg");
+
+
+accept_reg_form.forEach(form=>{
+    form.addEventListener("submit", (e)=>{
+        e.preventDefault()
+    
+        let form_data= new FormData(form)
+    
+    
+        fetch("../backend/accept-reg.php", {
+            method: "POST",
+            body: form_data
+        }).then(res=>res.json()).then(data=>{
+            if(data.status==="success"){
+                notify("accepted. Sending email")
+
+                setTimeout(()=>{
+                    location.reload()
+                },500)
+            }
+        })
+    })
+})
     
 
 
@@ -182,13 +189,13 @@ fetch("backend/get-pen-reg.php", {
 
 let reject_reg_form= document.querySelector("#reject-reg-form");
 
-don_form.addEventListener("submit", (e)=>{
+reject_reg_form.addEventListener("submit", (e)=>{
     e.preventDefault()
 
     let form_data= new FormData(reject_reg_form)
 
 
-    fetch("backend/reject-reg.php", {
+    fetch("../backend/reject-reg.php", {
         method: "POST",
         body: form_data
     }).then(res=>res.json()).then(data=>{
@@ -203,35 +210,12 @@ don_form.addEventListener("submit", (e)=>{
 })
 
 
-let accept_reg_form= document.querySelectorAll("#accept-reg");
-
-
-accept_reg_form.forEach(form=>{
-    form.addEventListener("submit", (e)=>{
-        e.preventDefault()
-    
-        let form_data= new FormData(form)
-    
-    
-        fetch("backend/accept-reg.php", {
-            method: "POST",
-            body: form_data
-        }).then(res=>res.json()).then(data=>{
-            if(data.status==="success"){
-                notify("accepted. Sending email")
-
-                setTimeout(()=>{
-                    location.reload()
-                },500)
-            }
-        })
-    })
-})
 
 
 
 
-fetch("backend/get-pen-up.php", {
+
+fetch("../backend/get-pen-up.php", {
     method:"GET",
 }).then(res=>res.json()).then(data=>{
     if(data.status==="empty"){
@@ -258,6 +242,47 @@ fetch("backend/get-pen-up.php", {
     }
 
 
+
+    let options = document.querySelectorAll(".don-options");
+let rows = document.querySelectorAll("#drow");
+
+
+
+document.addEventListener("click", (event) => {
+    if (![...rows, ...options].some(elem => elem.contains(event.target))) {
+        options.forEach(option => option.classList.remove("op_active"));
+        rows.forEach(row=>{
+            row.classList.remove("row-shadow");
+        })
+    }
+});
+
+
+rows.forEach((row, i) => {
+    row.addEventListener("click", (event) => {
+        event.stopPropagation(); // Prevents triggering document click
+
+        let isActive = options[i].classList.contains("op_active");
+
+        // Remove 'op_active' from all elements
+        options.forEach(option => option.classList.remove("op_active"));
+
+        rows.forEach(row=>{
+            row.classList.remove("row-shadow");
+        })
+      
+
+        // Toggle only if it wasn't active before
+        if (!isActive) {
+            options[i].classList.add("op_active");
+            row.classList.add("row-shadow");
+
+        }
+    });
+});
+
+
+
     document.querySelectorAll(".up-reject-id").forEach((manager,j) =>{
         manager.addEventListener("click", ()=>{
             document.querySelector(".screen_overlay").style.display="block"
@@ -270,35 +295,7 @@ fetch("backend/get-pen-up.php", {
     })
 
 
-})
-
-
-
-
-let reject_up_form= document.querySelector("#reject-up-form");
-
-reject_up_form.addEventListener("submit", (e)=>{
-    e.preventDefault()
-
-    let form_data= new FormData(reject_up_form)
-
-
-    fetch("backend/reject-up.php", {
-        method: "POST",
-        body: form_data
-    }).then(res=>res.json()).then(data=>{
-        if(data.status==="success"){
-            notify("rejected. Sending email")
-
-            setTimeout(()=>{
-                location.reload()
-            },500)
-        }
-    })
-})
-
-
-let accept_up_form= document.querySelectorAll("#accept-up");
+    let accept_up_form= document.querySelectorAll("#accept-up");
 
 
 accept_up_form.forEach(form=>{
@@ -308,7 +305,7 @@ accept_up_form.forEach(form=>{
         let form_data= new FormData(form)
     
     
-        fetch("backend/accept-up.php", {
+        fetch("../backend/accept-up.php", {
             method: "POST",
             body: form_data
         }).then(res=>res.json()).then(data=>{
@@ -324,10 +321,40 @@ accept_up_form.forEach(form=>{
 })
 
 
+})
 
 
 
-fetch("backend/get-pen-don.php", {
+
+let reject_up_form= document.querySelector("#reject-up-form");
+
+reject_up_form.addEventListener("submit", (e)=>{
+    e.preventDefault()
+
+    let form_data= new FormData(reject_up_form)
+
+
+    fetch("../backend/reject-up.php", {
+        method: "POST",
+        body: form_data
+    }).then(res=>res.json()).then(data=>{
+        if(data.status==="success"){
+            notify("rejected. Sending email")
+
+            setTimeout(()=>{
+                location.reload()
+            },500)
+        }
+    })
+})
+
+
+
+
+
+
+
+fetch("../backend/get-pen-don.php", {
     method:"GET",
 }).then(res=>res.json()).then(data=>{
     if(data.status==="empty"){
@@ -356,6 +383,46 @@ fetch("backend/get-pen-don.php", {
     }
 
 
+    let options = document.querySelectorAll(".don-options");
+    let rows = document.querySelectorAll("#drow");
+    
+    
+    
+    document.addEventListener("click", (event) => {
+        if (![...rows, ...options].some(elem => elem.contains(event.target))) {
+            options.forEach(option => option.classList.remove("op_active"));
+            rows.forEach(row=>{
+                row.classList.remove("row-shadow");
+            })
+        }
+    });
+    
+    
+    rows.forEach((row, i) => {
+        row.addEventListener("click", (event) => {
+            event.stopPropagation(); // Prevents triggering document click
+    
+            let isActive = options[i].classList.contains("op_active");
+    
+            // Remove 'op_active' from all elements
+            options.forEach(option => option.classList.remove("op_active"));
+    
+            rows.forEach(row=>{
+                row.classList.remove("row-shadow");
+            })
+          
+    
+            // Toggle only if it wasn't active before
+            if (!isActive) {
+                options[i].classList.add("op_active");
+                row.classList.add("row-shadow");
+    
+            }
+        });
+    });
+    
+
+
     document.querySelectorAll(".don-reject-id").forEach((manager,j) =>{
         manager.addEventListener("click", ()=>{
             document.querySelector(".screen_overlay").style.display="block"
@@ -369,16 +436,7 @@ fetch("backend/get-pen-don.php", {
 
 
 
-
-    
-
-
-})
-
-
-
-
-let accept_don_form= document.querySelectorAll("#accept-don");
+    let accept_don_form= document.querySelectorAll("#accept-don");
 
 
 accept_don_form.forEach(form=>{
@@ -388,7 +446,7 @@ accept_don_form.forEach(form=>{
         let form_data= new FormData(form)
     
     
-        fetch("backend/accept-don.php", {
+        fetch("../backend/accept-don.php", {
             method: "POST",
             body: form_data
         }).then(res=>res.json()).then(data=>{
@@ -403,6 +461,16 @@ accept_don_form.forEach(form=>{
     })
 })
 
+    
+
+
+})
+
+
+
+
+
+
 
 let reject_don_form= document.querySelector("#reject-don-form");
 
@@ -412,7 +480,7 @@ reject_don_form.addEventListener("submit", (e)=>{
     let form_data= new FormData(reject_up_form)
 
 
-    fetch("backend/reject-don.php", {
+    fetch("../backend/reject-don.php", {
         method: "POST",
         body: form_data
     }).then(res=>res.json()).then(data=>{
@@ -425,3 +493,5 @@ reject_don_form.addEventListener("submit", (e)=>{
         }
     })
 })
+
+

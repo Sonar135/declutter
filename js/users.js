@@ -3,7 +3,7 @@
 
 
 
-fetch("backend/all-users.php", {
+fetch("../backend/all-users.php", {
     method:"GET",
 }).then(res=>res.json()).then(data=>{
     if(data.status==="empty"){
@@ -31,7 +31,7 @@ fetch("backend/all-users.php", {
 
 
 
-fetch("backend/all-donors.php", {
+fetch("../backend/all-donors.php", {
     method:"GET",
 }).then(res=>res.json()).then(data=>{
     if(data.status==="empty"){

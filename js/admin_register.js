@@ -6,7 +6,7 @@ user_form.addEventListener("submit", (e)=>{
     const form_data= new FormData(user_form)
 
 
-    fetch("backend/admin_reg.php", {
+    fetch("../backend/admin_reg.php", {
         method: "POST",
         body: form_data
     })

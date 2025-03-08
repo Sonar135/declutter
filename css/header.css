@@ -112,3 +112,49 @@ button:hover{
     justify-content: center;
     align-items: center;
 }
+
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+.message{
+    position:fixed;
+    background: var(--accent);
+    color:white;
+    height:40px;
+    width:20%;
+    margin:auto;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    text-align: center;
+    padding:10px;
+    border-radius: 10px;
+    left: 0; 
+    right: 0; 
+    top:50px;
+    margin-left: auto; 
+    margin-right: auto; 
+    animation: fade_out .5s;
+    z-index:9999999999999999999999999999999999999999999999999999999999999999999999999;
+    /* margin-top:50px; */
+}
+
+
+
+
+
+@keyframes fade_out {
+    from{
+        transform: translateY(-40px);
+}
+
+    to{
+        transform: translateY(0px);
+
+    }
+}

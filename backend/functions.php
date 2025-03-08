@@ -164,7 +164,7 @@
 
         else if($checkedpwd===true){
 
-            $is_approved=mysqli_query($conn, "SELECT * FROM users WHERE matric='$matric' and is_approved='yes'");
+            $is_approved=mysqli_query($conn, "SELECT * FROM users WHERE matric='$matric' and is_approved='approved'");
             if($is_approved_row=mysqli_fetch_assoc($is_approved)){
 
                 session_start();
@@ -337,7 +337,7 @@
 
             echo json_encode([
                 'status' => 'success',
-                'redirect_url' => 'admin/verify_user.html'
+                'redirect_url' => 'verify_user.html'
             ]);
             exit();
         }

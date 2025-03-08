@@ -7,11 +7,6 @@
 
     session_start();
 
-    if(isset($_SESSION["id"])){
-        $email=$_SESSION["email"];
-        $user=$_SESSION["name"];
-        $phone=$_SESSION["phone"];
-    }
 
 
     $id= $_POST["id"];

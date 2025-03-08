@@ -1,7 +1,7 @@
 
 
 
-fetch("backend/admin_session.php", {
+fetch("../backend/admin_session.php", {
     method:"GET"
 })
 
@@ -9,12 +9,12 @@ fetch("backend/admin_session.php", {
     if(session_data.status=="logged in"){
   
         
-        if(session_data.user_type=="admin"){
+        if(session_data.type=="admin"){
 
         }
 
         else{
-              window.location.href="admin/login.html"
+              window.location.href="login.html"
         }
 
     }

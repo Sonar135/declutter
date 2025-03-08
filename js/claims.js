@@ -40,7 +40,7 @@ document.addEventListener("click", (event) => {
 
 
 
-fetch("backend/get-pen-claims.php", {
+fetch("../backend/get-pen-claims.php", {
     method:"GET",
 }).then(res=>res.json()).then(data=>{
     if(data.status==="empty"){
@@ -91,7 +91,7 @@ ong.forEach(form=>{
         let form_data= new FormData(form)
     
     
-        fetch("backend/ongoing-claim.php", {
+        fetch("../backend/ongoing-claim.php", {
             method: "POST",
             body: form_data
         }).then(res=>res.json()).then(data=>{
@@ -116,7 +116,7 @@ comp.forEach(form=>{
         let form_data= new FormData(form)
     
     
-        fetch("backend/comp-claim.php", {
+        fetch("../backend/comp-claim.php", {
             method: "POST",
             body: form_data
         }).then(res=>res.json()).then(data=>{
@@ -141,7 +141,7 @@ disp.forEach(form=>{
         let form_data= new FormData(form)
     
     
-        fetch("backend/disp-claim.php", {
+        fetch("../backend/disp-claim.php", {
             method: "POST",
             body: form_data
         }).then(res=>res.json()).then(data=>{
@@ -159,7 +159,7 @@ disp.forEach(form=>{
 
 
 
-fetch("backend/get-succ-claims.php", {
+fetch("../backend/get-succ-claims.php", {
     method:"GET",
 }).then(res=>res.json()).then(data=>{
     if(data.status==="empty"){

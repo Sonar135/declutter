@@ -9,7 +9,7 @@ fetch("backend/user_session.php", {
     if(session_data.status=="logged in"){
   
         
-        if(session_data.user_type=="user"){
+        if(session_data.type=="user"){
 
         }
 

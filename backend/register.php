@@ -59,7 +59,7 @@
         }
 
 
-        if(matric_exists($conn, $email)!== false){
+        if(matric_exists($conn, $matric)!== false){
             echo json_encode([
                 "status"=>"matric_exists"
             ]);
