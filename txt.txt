@@ -1,0 +1,4 @@
+brwiwpxnmvgvelpt
+
+
+            $is_approved=mysqli_query($conn, "SELECT * FROM users WHERE matric='$matric' and is_approved='approved'");

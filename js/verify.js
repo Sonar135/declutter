@@ -87,7 +87,7 @@ fetch("../backend/get-pen-reg.php", {
                                   </div>
                                 </td>
                         
-                                <td>${datum.matric}</td>
+                                <td>${datum.phone}</td>
                                 <td>${datum.email}</td>
                               </tr> `
 
@@ -153,7 +153,7 @@ rows.forEach((row, i) => {
             document.querySelector(".screen_overlay").style.display="block"
             document.querySelector(".id-card").style.display="block"
             document.querySelector("#id_name").textContent=`${data[j].name}`
-            document.getElementById("id-image").src =`../pictures/${data[j].photo}`;
+            document.getElementById("id-image").src =`../id_card/${data[j].photo}`;
            
         })
     })

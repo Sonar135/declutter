@@ -11,7 +11,7 @@
     
     $data=[];
 
-        $get=mysqli_query($conn, "SELECT * from users where is_approved!='approved'");
+        $get=mysqli_query($conn, "SELECT * from users where is_approved='pending'");
 
         if(mysqli_num_rows($get)<1){
             echo json_encode([

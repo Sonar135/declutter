@@ -185,7 +185,7 @@ claim_form.addEventListener("submit", (e)=>{
 
 
         if(data.status==="not_approved"){
-            notify("your account awaits approval")
+            notify("your account is not approved")
 
         }
 

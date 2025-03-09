@@ -35,6 +35,7 @@
                 "hall" => $row["hall"],
                 "email" => $row["email"],
                 "tier" => $row["is_donor"],
+                "approved" => $row["is_approved"],
             ];
         }
 

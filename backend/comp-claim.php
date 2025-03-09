@@ -16,6 +16,17 @@ use PHPMailer\PHPMailer\Exception;
 
 
 
+
+
+    $id= $_POST["id"];
+
+
+
+
+    $query= mysqli_query($conn, "UPDATE items set claim_status='completed', delivery_date=CURDATE() where id='$id'");
+
+
+    
 $get=mysqli_query($conn, "SELECT * from items where id='$id'");
 
 $row=mysqli_fetch_assoc($get);
@@ -26,14 +37,6 @@ $donor_email=$row["donor_email"];
 $recipient_email=$row["recipient_email"];
 
 $row=mysqli_fetch_assoc($get);
-
-
-    $id= $_POST["id"];
-
-
-
-
-    $query= mysqli_query($conn, "UPDATE items set claim_status='completed', delivery_date=CURDATE() where id='$id'");
 
     if($query){
         sendThankYouEmail($donor_email, $name, $recipient);
@@ -110,7 +113,6 @@ $row=mysqli_fetch_assoc($get);
                 <div class="container">
                     <h1>Great News...</h1>
                     <p> <span> ' . htmlspecialchars($recipient) . '</span> has received your item <span> ' . htmlspecialchars($item) . '</span> </p>
-                    <p>please contact the middle man <span class="">Mr Felix (09049534857) to pick up your claimed item</span></p>
                 </div>
                 <div class="footer">
                     <p>This email was sent to ' . htmlspecialchars($toEmail) . '.</p>
@@ -201,7 +203,6 @@ $row=mysqli_fetch_assoc($get);
                 <div class="container">
                     <h1>Great News...</h1>
                     <p>Your item <span> ' . htmlspecialchars($item) . '</span> has been delivered successfully  </p>
-                    <p>please contact the middle man <span class="">Mr Felix (09049534857) to pick up your claimed item</span></p>
                 </div>
                 <div class="footer">
                     <p>This email was sent to ' . htmlspecialchars($toEmail) . '.</p>

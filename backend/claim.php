@@ -41,6 +41,12 @@ use PHPMailer\PHPMailer\Exception;
 
 
 
+
+
+
+
+    $query= mysqli_query($conn, "UPDATE items set claim_status='$status', recipient='$user', recipient_no='$phone', recipient_email='$email', claim_date=CURDATE() where id='$id'");
+
     $get=mysqli_query($conn, "SELECT * from items where id='$id'");
 
     $row=mysqli_fetch_assoc($get);
@@ -49,10 +55,6 @@ use PHPMailer\PHPMailer\Exception;
     $name=$row["name"];
     $recipient=$row["recipient"];
 
-
-
-
-    $query= mysqli_query($conn, "UPDATE items set claim_status='$status', recipient='$user', recipient_no='$phone', recipient_email='$email', claim_date=CURDATE() where id='$id'");
 
     if($query){
         if(sendThankYouEmail($donor, $name, $recipient)){

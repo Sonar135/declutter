@@ -35,6 +35,8 @@
 }
 
 
+
+
 .box_1 h4, .box_2 h4{
     text-align: left;
     color:white;
@@ -248,16 +250,27 @@ input[type="file"]{
     box-shadow: var(--shadow);
 }
 
+
+
 .box_2 button:hover{
     background: var(--accent);
     color:white;
 }
 
 #upgrade{
-    /* display:none; */
+    display:none;
 }
 
 .pending{
     color:white;
     display:none;
+}
+
+#request{
+    display:none;
+}
+
+.pending_approve{
+    display: none;
+    color:white;
 }

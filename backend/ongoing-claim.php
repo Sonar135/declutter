@@ -20,15 +20,17 @@ use PHPMailer\PHPMailer\Exception;
 
 
 
+   
+
+
+    $query= mysqli_query($conn, "UPDATE items set claim_status='ongoing' where id='$id'");
+
     $get=mysqli_query($conn, "SELECT * from items where id='$id'");
 
     $row=mysqli_fetch_assoc($get);
 
     $email=$row["recipient_email"];
     $name=$row["name"];
-
-
-    $query= mysqli_query($conn, "UPDATE items set claim_status='ongoing' where id='$id'");
 
     if($query){
         if(sendThankYouEmail($email, $name)){

@@ -60,7 +60,7 @@
     
             // Content
             $mail->isHTML(true);
-            $mail->Subject = 'Upgraade Decline';
+            $mail->Subject = 'Upgrade Decline';
             
             // Email body content with personalized username
             $mail->Body = '

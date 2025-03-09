@@ -2,9 +2,15 @@ let data=document.querySelectorAll("#data");
 
 let don_data=document.querySelectorAll("#don-data")
 
+let id_data=document.querySelectorAll("#id-data")
+
 
 let fileInput=document.querySelector("#img")
 let img_label=document.querySelector("#img_label")
+
+
+let approve_file_input=document.querySelector("#id-img")
+let approve_img_label=document.querySelector("#id-label")
 
 
 
@@ -39,6 +45,19 @@ don_data.forEach((datum, i)=> {
 
 
 
+id_data.forEach((datum, i)=> {
+
+    datum.addEventListener("input", ()=>{
+        let allFilled = Array.from(id_data).every((field) => field.value.trim() !== '');
+    document.querySelector(".approve-submit").disabled = !allFilled;
+
+    
+
+    })
+ 
+    
+   
+});
 
 
 
@@ -60,11 +79,16 @@ document.querySelectorAll(".edit_id").forEach((manager,j) =>{
 
 
 
+
+
+
+
 document.querySelectorAll(".close").forEach(close=>{
     close.addEventListener("click", ()=>{
         document.querySelector(".screen_overlay").style.display="none"
         document.querySelector(".form_cont").style.display="none"
         document.querySelector(".don-form").style.display="none"
+        document.querySelector(".approve-form").style.display="none"
         document.querySelector("#name").textContent=""
         document.querySelector("#id").value=""
     })
@@ -83,6 +107,7 @@ document.querySelector("#no").addEventListener("click", ()=>{
 })
 
 
+
 fileInput.addEventListener("change", ()=>{
     const file = fileInput.files[0]; // Get the first file
 
@@ -91,9 +116,22 @@ fileInput.addEventListener("change", ()=>{
 
     const event = new Event("input", { bubbles: true });
     document.querySelector(".img_input").dispatchEvent(event);
+        // sale_submit.disabled=false
+})
+
+
+approve_file_input.addEventListener("change", ()=>{
+    const file = approve_file_input.files[0]; // Get the first file
+
+    approve_img_label.textContent = `${file.name}`;
+    document.querySelector(".id_input").value=`${file.name}`
+
+    const event = new Event("input", { bubbles: true });
+    document.querySelector(".id_input").dispatchEvent(event);
         // sale_submit.disabled=false;
  
 })
+
 
 
 
@@ -333,14 +371,23 @@ fetch("backend/profile.php", {
 
                     document.querySelector("#up-id").value=`${datum.id}`
 
-                    if(datum.tier==="yes"){
-                        document.querySelector("#upgrade").style.display="none";
-                    }
+             
 
                     if(datum.tier==="pending"){
-                        document.querySelector("#upgrade").style.display="none";
                         document.querySelector(".pending").style.display="block";
+                    }
 
+                    if(datum.approved==""){
+                        document.querySelector("#request").style.display="block";
+                    }
+
+                    if(datum.approved=="pending"){
+                        document.querySelector(".pending_approve").style.display="block";
+                    }
+
+
+                    if(datum.tier=="" && datum.approved=="approved"){
+                        document.querySelector("#upgrade").style.display="block";
                     }
 
                    document.querySelector("#tier").textContent=`Tier: ${tier}`
@@ -361,6 +408,16 @@ fetch("backend/profile.php", {
             document.querySelector(".hall").value=`${data[j].hall}`
             document.querySelector(".name").dispatchEvent(action);
            
+        })
+    })
+
+
+
+    
+    document.querySelectorAll("#request").forEach((manager,j) =>{
+        manager.addEventListener("click", ()=>{
+            document.querySelector(".screen_overlay").style.display="block"
+            document.querySelector(".approve-form").style.display="block"
         })
     })
 
@@ -413,6 +470,41 @@ edit_form.addEventListener("submit", (e)=>{
 
 
 
+
+
+
+let approve_form= document.querySelector("#approve-form");
+
+approve_form.addEventListener("submit", (e)=>{
+    e.preventDefault()
+
+    let form_data= new FormData(approve_form)
+
+
+    fetch("backend/approve.php", {
+        method: "POST",
+        body: form_data
+    }).then(res=>res.json()).then(data=>{
+        if(data.status==="success"){
+            notify("approval request sent")
+
+
+            setTimeout(()=>{
+                location.reload()
+            },500)
+
+          
+        }
+    })
+})
+
+
+
+
+
+
+
+
 let upgrade= document.querySelector("#upgrade");
 
 upgrade.addEventListener("submit", (e)=>{
@@ -437,6 +529,7 @@ upgrade.addEventListener("submit", (e)=>{
         }
     })
 })
+
 
 
 

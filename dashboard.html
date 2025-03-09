@@ -78,6 +78,34 @@
    </div>
 
 
+
+   <div class="approve-form">
+
+    <h1>please upload your school id card </h1>
+    <form action="" id="approve-form" enctype="multipart/form-data">
+
+      <input type="file"  id="id-img" class="" name="image" accept="image/*">
+      <label for="id-img" >
+
+          <div class="item_selector">
+              <h4 class="animate-text" id="id-label">Select Image</h4>          
+           </div>
+      </label>
+      
+    
+       <input type="hidden"  id="id-data" class="id_input" name="img_input">
+
+    <input type="hidden" name="id" class="approve_id">
+
+    <div class="buttons">
+        <button disabled class="approve-submit">Submit</button>
+        <div class="close">Close</div>
+    </div>
+
+</form>
+ </div>
+
+
 </div>
 
     <div class="header">
@@ -106,14 +134,18 @@
                 <button class="edit_id"><i class="fa-solid fa-pen"></i></button>
             </div>
 
+            
+
             <div class="box_2">
                 <h4 id="total-don">donated: 0</h4>
                 <h4 id="total-clmd">successfully claimed: 7</h4>
                 <h4 id="tier">Tier: Recipient</h4>
 
                <form action="" id="upgrade" > <input type="hidden" value="" id="up-id"> <button>upgrade to donor</button></form>
+               <button id="request">Request Approval</button>
 
                <div class="pending">upgrade request sent...</div>
+               <div class="pending_approve">approval request sent...</div>
             </div>
         </div>
     </div>
@@ -164,7 +196,7 @@
                   </section>
                   
                   
-             
+       
                
             </div>
         </div>
